@@ -1,60 +1,84 @@
 import { useState } from "react";
 import { HiMenu, HiX, HiLocationMarker } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = ["Home", "Features", "Pricing", "Resources"];
+  const navLinks = [
+    {
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "Features",
+      path: "/features",
+    },
+    {
+      name: "Resources",
+      path: "/resources",
+    },
+    {
+      name: "About",
+      path: "/about",
+    },
+  ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <nav className="sticky top-0 z-50 border-b border-[#E7E7EF] bg-[#F7F7FB]/90 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md">
+        <NavLink to="/" className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#3CBFA4] text-white shadow-sm">
             <HiLocationMarker className="text-2xl" />
           </div>
 
           <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tight text-gray-900">
+            <span className="text-xl font-bold tracking-tight text-[#211A52]">
               TrackHire
             </span>
 
-            <span className="text-xs text-gray-500">
+            <span className="text-xs font-medium text-[#7A7699]">
               Track Every Opportunity
             </span>
           </div>
-        </a>
+        </NavLink>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation */}
         <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <li key={link}>
-              <a
-                href="/"
-                className="font-medium text-gray-700 transition hover:text-blue-600"
+            <li key={link.path}>
+              <NavLink
+                to={link.path}
+                className="font-medium text-[#5F5B80] transition-colors duration-200 hover:text-[#3CBFA4]"
               >
-                {link}
-              </a>
+                {link.name}
+              </NavLink>
             </li>
           ))}
         </ul>
 
         {/* Desktop Buttons */}
         <div className="hidden items-center gap-4 md:flex">
-          <button className="rounded-lg border border-gray-300 px-5 py-2 font-medium transition hover:bg-gray-100">
+          <NavLink
+            to="/login"
+            className="rounded-xl border border-[#D9D9E6] px-5 py-2.5 font-medium text-[#5F5B80] transition-all duration-200 hover:bg-[#ECFBF8]"
+          >
             Login
-          </button>
+          </NavLink>
 
-          <button className="rounded-lg bg-blue-600 px-5 py-2 font-medium text-white transition hover:bg-blue-700">
+          <NavLink
+            to="/signup"
+            className="rounded-xl bg-[#3CBFA4] px-5 py-2.5 font-medium text-white shadow-sm transition-all duration-200 hover:bg-[#31A88F]"
+          >
             Sign Up
-          </button>
+          </NavLink>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-3xl text-gray-700 md:hidden"
+          className="text-3xl text-[#5F5B80] md:hidden"
         >
           {isOpen ? <HiX /> : <HiMenu />}
         </button>
@@ -62,26 +86,35 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="border-t border-gray-200 bg-white md:hidden">
-          <ul className="flex flex-col px-6 py-4">
+        <div className="border-t border-[#E7E7EF] bg-[#F7F7FB] md:hidden">
+          <ul className="flex flex-col px-6 py-5">
             {navLinks.map((link) => (
-              <li key={link}>
-                <a
-                  href="/"
-                  className="block rounded-lg py-3 text-gray-700 transition hover:bg-gray-100 hover:text-blue-600"
+              <li key={link.path}>
+                <NavLink
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className="block rounded-lg py-3 font-medium text-[#5F5B80] transition hover:bg-[#ECFBF8] hover:text-[#3CBFA4]"
                 >
-                  {link}
-                </a>
+                  {link.name}
+                </NavLink>
               </li>
             ))}
 
-            <button className="mt-4 rounded-lg border border-gray-300 py-3">
+            <NavLink
+              to="/login"
+              onClick={() => setIsOpen(false)}
+              className="mt-5 rounded-xl border border-[#D9D9E6] py-3 text-center font-medium text-[#5F5B80] transition hover:bg-[#ECFBF8]"
+            >
               Login
-            </button>
+            </NavLink>
 
-            <button className="mt-3 rounded-lg bg-blue-600 py-3 font-medium text-white">
+            <NavLink
+              to="/signup"
+              onClick={() => setIsOpen(false)}
+              className="mt-3 rounded-xl bg-[#3CBFA4] py-3 text-center font-medium text-white transition hover:bg-[#31A88F]"
+            >
               Sign Up
-            </button>
+            </NavLink>
           </ul>
         </div>
       )}
