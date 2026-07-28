@@ -1,0 +1,444 @@
+1. Define the product first:
+
+   Register/Login
+        ↓
+   Dashboard
+        ↓
+   Add Job Application
+        ↓
+   ┌─────────┬───────────┬───────────┬─────────┬──────────┐
+   │ Applied │ Screening │ Interview │ Offer   │ Rejected │
+   └─────────┴───────────┴───────────┴─────────┴──────────┘
+        ↓
+   Drag application between stages
+        ↓
+   Update application
+        ↓
+   Dashboard statistics update
+------------------------------------------------------------------------------------------------------------------------------
+
+
+2. Decide your stack:
+
+   Frontend
+   ──────────────
+   React
+   TypeScript
+   Vite
+   React Router
+   Redux Toolkit
+   React Hook Form
+   Axios/fetch
+   Tailwind CSS OR normal CSS
+   
+   Backend
+   ──────────────
+   Node.js
+   Express.js
+   MongoDB
+   Mongoose
+   JWT
+   bcrypt
+   cookie-parser
+   validator/Zod
+   
+   Deployment
+   ──────────────
+   Frontend → AWS / Vercel
+   Backend → AWS / Render
+   Database → MongoDB Atlas
+--------------------------------------------------------------------------------------------------------------------------
+
+3. Plan your screens before VS Code:
+
+## Authentication
+
+LOGIN
++----------------------------------+
+|            JobFlow               |
+|                                  |
+| Email     [________________]      |
+| Password  [________________]      |
+|                                  |
+|           [ Login ]              |
+|                                  |
+| Don't have an account? Register  |
++----------------------------------+
+
+## Dashboard
+
++------------------------------------------------+
+| Sidebar | Dashboard                            |
+|         |                                      |
+| Home    |  Total   Applied   Interview  Offer  |
+| Jobs    |   24       12          5        2    |
+| Board   |                                      |
+| Profile |        Application Chart             |
+|         |                                      |
+|         |     Recent Applications              |
++------------------------------------------------+
+
+## Kanban
+
+Applied       Screening      Interview       Offer
+────────      ─────────      ─────────       ──────
+
+Google        Microsoft      Amazon          XYZ
+Frontend      React Dev      SDE             Developer
+
+Netflix       Razorpay       TCS
+UI Dev        Frontend       React
+
+## Each card could contain:
+
+Google
+
+Frontend Developer
+Mumbai
+
+Applied: 25 Jul 2026
+
+React • TypeScript
+
+[Edit] [...]
+--------------------------------------------------------------------------------------------------------------------------
+
+4. Design the data BEFORE building components:
+
+{
+  id: "123",
+
+  company: "Google",
+  position: "Frontend Developer",
+
+  location: "Mumbai",
+  jobType: "Full-time",
+
+  status: "applied",
+
+  salary: "8-12 LPA",
+
+  jobUrl: "...",
+
+  appliedDate: "2026-07-25",
+
+  notes: "Referral from LinkedIn",
+
+  skills: [
+    "React",
+    "TypeScript"
+  ]
+}
+--------------------------------------------------------------------------------------------------------------------------
+
+5. Your frontend folder structure:
+
+job-application-tracker/
+│
+├── public/
+│
+├── src/
+│   │
+│   ├── assets/
+│   │
+│   ├── components/
+│   │   ├── common/
+│   │   ├── layout/
+│   │   ├── dashboard/
+│   │   ├── jobs/
+│   │   └── kanban/
+│   │
+│   ├── pages/
+│   │   ├── Login/
+│   │   ├── Register/
+│   │   ├── Dashboard/
+│   │   ├── Applications/
+│   │   ├── Kanban/
+│   │   └── Profile/
+│   │
+│   ├── hooks/
+│   │
+│   ├── services/
+│   │   ├── authService
+│   │   └── jobService
+│   │
+│   ├── store/
+│   │   ├── auth/
+│   │   └── jobs/
+│   │
+│   ├── types/
+│   │
+│   ├── utils/
+│   │
+│   ├── data/
+│   │   └── mockJobs
+│   │
+│   ├── routes/
+│   │
+│   ├── App
+│   └── main
+│
+├── .env
+├── .gitignore
+├── package.json
+└── README.md
+
+--------------------------------------------------------------------------------------------------------------------------
+
+6. Understand Page vs Component
+
+## A page : KanbanPage
+
+   might contain:
+   KanbanPage
+   │
+   ├── PageHeader
+   │
+   ├── FilterBar
+   │
+   └── KanbanBoard
+         │
+         ├── KanbanColumn
+         │     │
+         │     └── JobCard
+         │
+         ├── KanbanColumn
+         │
+         ├── KanbanColumn
+         │
+         └── KanbanColumn
+--------------------------------------------------------------------------------------------------------------------------
+
+7. First build with mock data:
+
+const jobs = [
+  {
+    id: 1,
+    company: "Google",
+    position: "Frontend Developer",
+    status: "applied"
+  },
+
+  {
+    id: 2,
+    company: "Microsoft",
+    position: "React Developer",
+    status: "interview"
+  }
+];
+--------------------------------------------------------------------------------------------------------------------------
+
+8. Build frontend in this order:
+
+1. App layout
+        ↓
+2. Sidebar/Navbar
+        ↓
+3. Dashboard UI
+        ↓
+4. Job Application form
+        ↓
+5. Applications table
+        ↓
+6. Search
+        ↓
+7. Filtering
+        ↓
+8. Sorting
+        ↓
+9. Pagination
+        ↓
+10. Kanban board
+        ↓
+11. Drag & Drop
+        ↓
+12. Charts
+        ↓
+13. Login/Register UI
+        ↓
+14. Responsive design
+        ↓
+15. Loading/Error/Empty states
+--------------------------------------------------------------------------------------------------------------------------
+
+9. THEN design your backend:
+
+React
+   ↓
+GET /api/applications
+   ↓
+Express
+   ↓
+MongoDB
+
+Your backend structure could be:
+server/
+│
+├── src/
+│   ├── config/
+│   │   └── database.js
+│   │
+│   ├── models/
+│   │   ├── User.js
+│   │   └── Application.js
+│   │
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   └── applicationController.js
+│   │
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   └── applicationRoutes.js
+│   │
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   │   └── errorMiddleware.js
+│   │
+│   ├── utils/
+│   │
+│   ├── app.js
+│   └── server.js
+│
+├── .env
+├── .gitignore
+└── package.json
+--------------------------------------------------------------------------------------------------------------------------
+
+10. Design your API before writing controllers:
+
+AUTH
+
+POST   /api/auth/register
+POST   /api/auth/login
+POST   /api/auth/logout
+GET    /api/auth/me
+
+
+APPLICATIONS
+
+GET    /api/applications
+
+GET    /api/applications/:id
+
+POST   /api/applications
+
+PATCH  /api/applications/:id
+
+DELETE /api/applications/:id
+--------------------------------------------------------------------------------------------------------------------------
+
+11. Your MongoDB relationship:
+
+User
+│
+│ owns
+↓
+Applications
+
+
+
+Conceptually:
+USER
+_id
+name
+email
+password
+
+
+APPLICATION
+_id
+userId  ────────────────→ User
+company
+position
+location
+status
+salary
+jobUrl
+notes
+skills
+appliedDate
+createdAt
+updatedAt
+--------------------------------------------------------------------------------------------------------------------------
+
+12. Authentication flow:
+
+Register
+   ↓
+password hashed
+   ↓
+User saved
+
+
+Login
+   ↓
+email/password verified
+   ↓
+JWT created
+   ↓
+cookie/token
+   ↓
+React knows user is authenticated
+
+Then:
+GET /api/applications
+        ↓
+auth middleware
+        ↓
+verify JWT
+        ↓
+get userId
+        ↓
+find applications belonging to user
+        ↓
+return applications
+--------------------------------------------------------------------------------------------------------------------------
+
+13. Replace mock data gradually:
+
+mockJobs
+
+Eventually it receives:
+API
+ ↓
+Redux
+ ↓
+jobs
+ ↓
+KanbanBoard
+--------------------------------------------------------------------------------------------------------------------------
+
+14. Add professional states
+
+Loading
+
+Fetching applications...
+
+----------------
+
+Success
+
+[applications]
+
+----------------
+
+Empty
+
+You haven't added any applications yet.
+
+[Add Application]
+
+----------------
+
+Error
+
+Unable to load applications.
+
+[Try Again]
+
+
+
+
+
+
+
