@@ -1,3 +1,65 @@
+
+---------------------------------------------------- Project Overview ----------------------------------------------------
+Login/Register
+        │
+        ▼
+Dashboard
+        │
+        ├── Statistics Cards
+        ├── Charts
+        └── Recent Applications
+        │
+        ▼
+Add Job
+        │
+        ▼
+Job List
+        │
+        ├── Search
+        ├── Filter
+        ├── Sort
+        └── Pagination
+        │
+        ▼
+Kanban Board
+(Applied → Screening → Interview → Offer → Rejected)
+        │
+        ▼
+Drag & Drop Status Update
+        │
+        ▼
+Profile Page
+---------------------------------------------------- Folder architecture ----------------------------------------------------
+
+src
+│
+├── pages
+│   └── Home
+│        └── Home.jsx
+│
+├── components
+│
+│   ├── layout
+│   │      └── Navbar
+│   │             ├── Navbar.jsx
+│   │             └── Navbar.css
+│   │
+│   ├── home
+│   │
+│   │      ├── HeroSection
+│   │      │      ├── HeroSection.jsx
+│   │      │      └── HeroSection.css
+│   │      │
+│   │      ├── FeatureTabs
+│   │      │      ├── FeatureTabs.jsx
+│   │      │      └── FeatureTabs.css
+│   │      │
+│   │      └── VideoCard
+│   │             ├── VideoCard.jsx
+│   │             └── VideoCard.css
+
+------------------------------------------------------- For reference -------------------------------------------------------
+
 1. Define the product first:
 
    Register/Login

@@ -1,12 +1,8 @@
-import Dashboard from "./pages/Dashboard"
+import Home from "./pages/Home/Home";
 function App() {
-
   return (
-    <div>
-      <h1>Hello Worlds</h1>
-      <Dashboard/>
-    </div>
-  )
+    <Home/>
+  );
 }
 
-export default App
+export default App;
