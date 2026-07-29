@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { HiMenu, HiX, HiLocationMarker } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
     {
@@ -24,8 +25,26 @@ function Navbar() {
     },
   ];
 
+  useEffect(() => {
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 10);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
+
   return (
-    <nav className="sticky top-0 z-50 border-b border-[#E7E7EF] bg-[#F7F7FB]/90 backdrop-blur-md">
+    <nav
+  className={`sticky top-0 z-50 transition-all duration-500 ease-in-out ${
+    isScrolled
+      ? "bg-white shadow-sm"
+      : "bg-gradient-to-br from-[#FCFCFD] via-[#F8FAFC] to-[#F5FAF8]"
+  }`}
+>
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-3">
