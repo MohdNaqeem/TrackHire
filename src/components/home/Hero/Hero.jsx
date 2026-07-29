@@ -7,12 +7,12 @@ function Hero() {
         {/* Left Section */}
         <div className="flex flex-1 flex-col justify-center items-center text-center lg:items-start lg:text-left">
           <h1 className="text-5xl font-extrabold leading-[1.1] text-[#211A52] sm:text-6xl lg:text-[4rem]">
-            Track Every Job
+            Track Every Job.
             <br />
-            Land Faster
+            <span className="text-[#3CBFA4]">Land Faster</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-7 text-[#5F5B80] sm:text-lg sm:leading-8">
+          <p className="mt-6 max-w-lg text-base leading-7 text-[#5F5B80] sm:text-lg sm:leading-8">
             Organize your job applications, monitor interview progress, manage
             offers, and stay on top of your job search — all in one place.
           </p>
