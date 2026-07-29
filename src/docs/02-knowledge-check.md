@@ -284,3 +284,15 @@ The id is used as the key prop when rendering lists. React uses keys to uniquely
 Each job carries its own badge styling, making the UI data-driven. The component reads those values and applies the correct Tailwind classes, so adding new statuses requires only updating the data rather than changing the JSX.
 
 ------------------------------------------------------------------------------------------------------------------------
+
+## Feature 5 : Features Card
+
+### Question 1 
+
+**Why did you create three separate files instead of writing everything in one file?**
+
+### Answer 
+
+I followed the Single Responsibility Principle. featuresData.js stores only the data, FeatureCard.jsx is a reusable component responsible for rendering a single feature card, and FeaturesSection.jsx is responsible for laying out the section and mapping the data to components. This separation makes the code easier to maintain, reuse, and scale. If I need to add a new feature later, I only update the data file without changing the UI logic or layout.
+
+---
