@@ -3,7 +3,7 @@ import features from "./featuresData";
 
 function FeaturesSection() {
   return (
-    <section className="bg-[#F7F7FB] py-20">
+    <section className="bg-[#F7F7FB] pt-24 pb-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center">
