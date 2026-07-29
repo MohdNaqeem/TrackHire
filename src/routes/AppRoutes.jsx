@@ -7,16 +7,21 @@ import Resources from "../pages/Resources/Resources";
 import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import NotFound from "../pages/NotFound/NotFound";
+import MainLayout from "../layouts/MainLayout";
 
 function AppRoutes() {
 return (
      <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/features" element={<Features />} />
-      <Route path="/resources" element={<Resources />} />
-      <Route path="/about" element={<About />} />
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/about" element={<About />} />
+      </Route>
+
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
 )

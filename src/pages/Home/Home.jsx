@@ -1,21 +1,7 @@
-import Navbar from "../../components/layout/Navbar/Navbar";
+import Hero from "../../components/home/Hero/Hero";
 
 function Home() {
-  return (
-    <>
-      <Navbar />
-
-      <main className="mx-auto max-w-7xl px-6 py-20">
-        <h1 className="text-5xl font-bold text-gray-800">
-          Welcome to JobTracker
-        </h1>
-
-        <p className="mt-5 max-w-xl text-lg text-gray-600">
-          Track your job applications, interviews, and offers in one place.
-        </p>
-      </main>
-    </>
-  );
+  return <Hero />;
 }
 
 export default Home;
