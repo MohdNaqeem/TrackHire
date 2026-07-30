@@ -90,14 +90,12 @@ function AboutSection() {
               />
             ))}
           </div>
+          <div className="mt-10 flex justify-center">
+    <button className="rounded-xl bg-[#3CBFA4] px-8 py-3 text-base font-semibold text-white transition-colors duration-300 hover:bg-[#31A88F]">
+      Start Tracking Today
+    </button>
+  </div>
         </div>
-      </div>
-
-      {/* CTA */}
-      <div className="mt-14 flex justify-center">
-        <button className="rounded-xl bg-[#3CBFA4] px-8 py-3 text-base font-semibold text-white transition-colors duration-300 hover:bg-[#31A88F]">
-          Start Tracking Today
-        </button>
       </div>
     </section>
   );
