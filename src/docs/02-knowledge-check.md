@@ -306,3 +306,58 @@ I followed the Single Responsibility Principle. featuresData.js stores only the 
 - Rendering the list of highlights.
 - Rendering all four About cards.
 - Rendering the CTA button.
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Feature 6 : Dashboard Sidebar
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Feature 6 : Dashboard Header 
+
+### Question 1
+
+**If an interviewer asks: Why didn't you place Header inside Dashboard.jsx?**
+
+### Answer 
+
+Because the Header is shared by all authenticated pages. I placed it inside DashboardLayout so it renders once and wraps every dashboard page through React Router's Outlet. This avoids repeating the same code on every page and keeps the layout consistent.
+
+### Question 2
+
+**Why did you create a Header component?**
+
+### Answer 
+
+The Header contains functionality that's shared across all authenticated pages, such as search, notifications, and user information. Instead of repeating it on every page, I placed it inside the DashboardLayout so it renders once and all pages inherit it through React Router's Outlet.
+
+### Question 3 
+
+**Why did you create a StatCard component instead of writing four cards?**
+
+### Answer 
+
+All four cards share the same layout and differ only in their data. I created a reusable StatCard component and stored the content in a separate data file. This keeps the UI reusable, reduces duplication, and makes it easy to add or modify cards without changing the component.
+
+### Question 4
+
+**Why did you create dashboardStatsData.js?**
+
+### Answer 
+
+I separated the dashboard data from the UI. The component is responsible only for rendering, while the data file stores the content. This follows separation of concerns and makes the component reusable.
+
+### Question 5
+
+**Why did you create a reusable StatCard?**
+
+### Answer 
+
+All dashboard metrics share the same layout and only differ in their data, so I extracted the UI into a reusable StatCard component. The parent page maps over a data array and passes props to each card, reducing duplication and making it easy to add new metrics.
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
