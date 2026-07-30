@@ -295,4 +295,14 @@ Each job carries its own badge styling, making the UI data-driven. The component
 
 I followed the Single Responsibility Principle. featuresData.js stores only the data, FeatureCard.jsx is a reusable component responsible for rendering a single feature card, and FeaturesSection.jsx is responsible for laying out the section and mapping the data to components. This separation makes the code easier to maintain, reuse, and scale. If I need to add a new feature later, I only update the data file without changing the UI logic or layout.
 
----
+------------------------------------------------------------------------------------------------------------------------
+
+## Feature 5 : About section
+
+### Complete Responsibility
+
+- Rendering the complete About section.
+- Displaying the About heading and description.
+- Rendering the list of highlights.
+- Rendering all four About cards.
+- Rendering the CTA button.
