@@ -357,6 +357,22 @@ I separated the dashboard data from the UI. The component is responsible only fo
 
 All dashboard metrics share the same layout and only differ in their data, so I extracted the UI into a reusable StatCard component. The parent page maps over a data array and passes props to each card, reducing duplication and making it easy to add new metrics.
 
+### Question 6
+
+**Why did you only show three applications on the dashboard?**
+
+### Answer 
+
+The dashboard is designed to provide a quick overview rather than display complete datasets. I intentionally limited the section to the three most recent applications and provided a call-to-action to navigate to the dedicated Applications page, where users can search, filter, and manage all their applications.
+
+### Question 7
+
+**Why did you create a separate ApplicationRow component?**
+
+### Answer 
+
+Each application row shares the same layout and styling, so I extracted it into a reusable component. The parent table maps over the application data and passes each application's details as props. This avoids duplication and makes the UI easier to maintain and extend.
+
 ------------------------------------------------------------------------------------------------------------------------
 
 

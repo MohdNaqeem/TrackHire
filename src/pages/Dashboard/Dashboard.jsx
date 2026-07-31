@@ -1,5 +1,6 @@
 import StatCard from "../../components/Dashboard/Stats/StatCard";
 import { dashboardStats } from "../../components/Dashboard/Stats/dashboardStatsData";
+import RecentApplications from "../../components/Dashboard/RecentApplications/RecentApplications";
 
 const Dashboard = () => {
   return (
@@ -17,6 +18,7 @@ const Dashboard = () => {
           />
         ))}
       </div>
+      <RecentApplications />
     </section>
   );
 };

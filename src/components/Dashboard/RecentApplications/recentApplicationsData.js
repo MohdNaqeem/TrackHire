@@ -1,0 +1,42 @@
+export const recentApplications = [
+  {
+    id: 1,
+    company: "Google",
+    position: "Frontend Developer",
+    location: "Bangalore",
+    status: "Interview",
+    appliedDate: "28 Jul 2026",
+  },
+  {
+    id: 2,
+    company: "Microsoft",
+    position: "React Developer",
+    location: "Hyderabad",
+    status: "Applied",
+    appliedDate: "26 Jul 2026",
+  },
+  {
+    id: 3,
+    company: "Amazon",
+    position: "Software Engineer",
+    location: "Chennai",
+    status: "Rejected",
+    appliedDate: "24 Jul 2026",
+  },
+  {
+    id: 4,
+    company: "Adobe",
+    position: "Frontend Engineer",
+    location: "Noida",
+    status: "Offer",
+    appliedDate: "22 Jul 2026",
+  },
+  {
+    id: 5,
+    company: "Flipkart",
+    position: "MERN Stack Developer",
+    location: "Remote",
+    status: "Interview",
+    appliedDate: "20 Jul 2026",
+  },
+];
