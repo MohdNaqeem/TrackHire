@@ -472,3 +472,11 @@ The table is responsible for rendering the overall structure and iterating over 
 Each application has the same structure. Instead of repeating the markup for every row, I created a reusable ApplicationRow component. The table maps over the data and passes each application's information as props. This keeps the code modular and makes future updates easier.
 
 ---
+
+### Question 6
+
+**Why didn't you store the search state inside SearchBar?**
+
+### Answer 
+
+The search value is shared between the SearchBar and the ApplicationsTable. Since multiple components need access to the same state, I lifted it to their closest common parent, Applications.jsx. The SearchBar becomes a controlled component that receives its value and onChange handler through props.

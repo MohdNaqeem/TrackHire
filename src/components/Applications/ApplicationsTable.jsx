@@ -1,7 +1,6 @@
 import ApplicationRow from "./ApplicationRow";
-import { applicationsData } from "../../data/applicationsData";
 
-const ApplicationsTable = () => {
+const ApplicationsTable = ({ applications }) => {
   return (
     <section className="overflow-hidden rounded-3xl border border-[#E7E7EF] bg-white shadow-sm">
       <div className="overflow-x-auto">
@@ -33,16 +32,27 @@ const ApplicationsTable = () => {
 
           {/* Table Body */}
           <tbody>
-            {applicationsData.map((application) => (
-              <ApplicationRow
-                key={application.id}
-                company={application.company}
-                position={application.position}
-                status={application.status}
-                appliedDate={application.appliedDate}
-                location={application.location}
-              />
-            ))}
+            {applications.length > 0 ? (
+              applications.map((application) => (
+                <ApplicationRow
+                  key={application.id}
+                  company={application.company}
+                  position={application.position}
+                  status={application.status}
+                  appliedDate={application.appliedDate}
+                  location={application.location}
+                />
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="py-10 text-center text-[#8A86A3]"
+                >
+                  No applications found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
