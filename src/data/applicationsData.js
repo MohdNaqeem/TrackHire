@@ -1,0 +1,42 @@
+export const applicationsData = [
+  {
+    id: 1,
+    company: "Google",
+    position: "Frontend Developer",
+    status: "Interview",
+    appliedDate: "28 Jul 2026",
+    location: "Bangalore",
+  },
+  {
+    id: 2,
+    company: "Microsoft",
+    position: "React Developer",
+    status: "Applied",
+    appliedDate: "26 Jul 2026",
+    location: "Hyderabad",
+  },
+  {
+    id: 3,
+    company: "Amazon",
+    position: "Software Engineer",
+    status: "Rejected",
+    appliedDate: "24 Jul 2026",
+    location: "Chennai",
+  },
+  {
+    id: 4,
+    company: "Adobe",
+    position: "Frontend Engineer",
+    status: "Offer",
+    appliedDate: "20 Jul 2026",
+    location: "Pune",
+  },
+  {
+    id: 5,
+    company: "Meta",
+    position: "UI Engineer",
+    status: "Interview",
+    appliedDate: "18 Jul 2026",
+    location: "Remote",
+  },
+];

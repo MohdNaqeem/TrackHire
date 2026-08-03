@@ -1,4 +1,6 @@
 import ApplicationsHeader from "../../components/Applications/ApplicationsHeader";
+import ApplicationsToolbar from "../../components/Applications/ApplicationsToolbar";
+import ApplicationsTable from "../../components/Applications/ApplicationsTable";
 
 const Applications = () => {
   return (
@@ -6,8 +8,12 @@ const Applications = () => {
       <ApplicationsHeader />
 
       {/* Search & Filters */}
+      <ApplicationsToolbar/>
+      
 
       {/* Applications Table */}
+      <ApplicationsTable/>
+
 
       {/* Pagination */}
     </section>

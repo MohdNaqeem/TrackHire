@@ -20,7 +20,7 @@ const RecentApplications = () => {
         </div>
 
         <Link
-          to="/applications"
+          to="/dashboard/applications"
           className="flex items-center gap-2 rounded-xl bg-[#F5F6FA] px-4 py-2 text-sm font-medium text-[#211A52] transition-all duration-300 hover:bg-[#3CBFA4] hover:text-white"
         >
           View All Applications

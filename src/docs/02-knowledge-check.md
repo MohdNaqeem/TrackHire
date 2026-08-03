@@ -419,7 +419,7 @@ The BarChart receives an array of objects through its data prop. Each chart elem
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Feature 6 : Application Header
+## Feature 6 : Application Header / Toolbar
 
 ### Question 1
 
@@ -428,3 +428,47 @@ The BarChart receives an array of objects through its data prop. Each chart elem
 ### Answer 
 
 ApplicationsHeader is a reusable UI component responsible only for displaying the page heading and primary action. I kept it separate from Applications.jsx so the page component remains clean and only composes smaller reusable components.
+
+---
+
+### Question 2
+
+**Why did you create a separate ApplicationsToolbar component?**
+
+### Answer
+
+The toolbar groups all controls that interact with the application list, such as search, filtering, and sorting. Separating it from the page keeps the page component focused on layout and makes the toolbar easier to extend or reuse.
+
+---
+
+### Question 3
+
+**Why did you create a separate SearchBar component?**
+
+### Answer 
+
+Search is an independent UI control with its own responsibility. I separated it from the toolbar so it can evolve independently. Later it can manage its own state, debouncing, API calls, or validation without making the toolbar component complex.
+
+--- 
+
+### Question 4
+
+**Why did you separate ApplicationsTable and ApplicationRow?**
+
+### Answer 
+
+**Why did you separate ApplicationsTable and ApplicationRow?**
+
+The table is responsible for rendering the overall structure and iterating over the data, while each row is responsible for displaying a single application. Separating them keeps the code modular, makes rows reusable, and allows row-specific features like actions or inline editing without making the table component complex.
+
+---
+
+### Question 5
+
+**Why did you create ApplicationRow.jsx**
+
+### Answer
+
+Each application has the same structure. Instead of repeating the markup for every row, I created a reusable ApplicationRow component. The table maps over the data and passes each application's information as props. This keeps the code modular and makes future updates easier.
+
+---
