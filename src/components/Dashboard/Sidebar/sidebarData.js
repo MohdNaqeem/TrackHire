@@ -19,37 +19,37 @@ export const sidebarLinks = [
   {
     id: 2,
     title: "Applications",
-    path: "/applications",
+    path: "/dashboard/applications",
     icon: RiBriefcaseLine,
   },
   {
     id: 3,
     title: "Analytics",
-    path: "/analytics",
+    path: "/dashboard/analytics",
     icon: RiBarChartBoxLine,
   },
   {
     id: 4,
     title: "Kanban",
-    path: "/kanban",
+    path: "/dashboard/kanban",
     icon: RiKanbanView,
   },
   {
     id: 5,
     title: "Calendar",
-    path: "/calendar",
+    path: "/dashboard/calendar",
     icon: RiCalendarLine,
   },
   {
     id: 6,
     title: "Profile",
-    path: "/profile",
+    path: "/dashboard/profile",
     icon: RiUser3Line,
   },
   {
     id: 7,
     title: "Settings",
-    path: "/settings",
+    path: "/dashboard/settings",
     icon: RiSettings3Line,
   },
 ];

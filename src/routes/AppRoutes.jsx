@@ -11,6 +11,7 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 
 import MainLayout from "../layouts/MainLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Applications from "../pages/Applications/Applications";
 
 function AppRoutes() {
   return (
@@ -28,8 +29,9 @@ function AppRoutes() {
       <Route path="/signup" element={<Signup />} />
 
       {/* Dashboard Pages */}
-      <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="applications" element={<Applications />} />
       </Route>
 
       {/* 404 */}

@@ -416,3 +416,15 @@ I separated the mock data from the presentation layer to follow the Single Respo
 ### Answer 
 
 The BarChart receives an array of objects through its data prop. Each chart element uses a dataKey to identify which property from each object it should render. For example, XAxis uses the day property for labels, while Bar uses the applications property to determine the height of each bar.
+
+------------------------------------------------------------------------------------------------------------------------
+
+## Feature 6 : Application Header
+
+### Question 1
+
+**Why did you create ApplicationsHeader**
+
+### Answer 
+
+ApplicationsHeader is a reusable UI component responsible only for displaying the page heading and primary action. I kept it separate from Applications.jsx so the page component remains clean and only composes smaller reusable components.
