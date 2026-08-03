@@ -325,6 +325,8 @@ I followed the Single Responsibility Principle. featuresData.js stores only the 
 
 Because the Header is shared by all authenticated pages. I placed it inside DashboardLayout so it renders once and wraps every dashboard page through React Router's Outlet. This avoids repeating the same code on every page and keeps the layout consistent.
 
+---
+
 ### Question 2
 
 **Why did you create a Header component?**
@@ -332,6 +334,8 @@ Because the Header is shared by all authenticated pages. I placed it inside Dash
 ### Answer 
 
 The Header contains functionality that's shared across all authenticated pages, such as search, notifications, and user information. Instead of repeating it on every page, I placed it inside the DashboardLayout so it renders once and all pages inherit it through React Router's Outlet.
+
+---
 
 ### Question 3 
 
@@ -341,6 +345,8 @@ The Header contains functionality that's shared across all authenticated pages, 
 
 All four cards share the same layout and differ only in their data. I created a reusable StatCard component and stored the content in a separate data file. This keeps the UI reusable, reduces duplication, and makes it easy to add or modify cards without changing the component.
 
+---
+
 ### Question 4
 
 **Why did you create dashboardStatsData.js?**
@@ -348,6 +354,8 @@ All four cards share the same layout and differ only in their data. I created a 
 ### Answer 
 
 I separated the dashboard data from the UI. The component is responsible only for rendering, while the data file stores the content. This follows separation of concerns and makes the component reusable.
+
+---
 
 ### Question 5
 
@@ -357,6 +365,8 @@ I separated the dashboard data from the UI. The component is responsible only fo
 
 All dashboard metrics share the same layout and only differ in their data, so I extracted the UI into a reusable StatCard component. The parent page maps over a data array and passes props to each card, reducing duplication and making it easy to add new metrics.
 
+---
+
 ### Question 6
 
 **Why did you only show three applications on the dashboard?**
@@ -364,6 +374,8 @@ All dashboard metrics share the same layout and only differ in their data, so I 
 ### Answer 
 
 The dashboard is designed to provide a quick overview rather than display complete datasets. I intentionally limited the section to the three most recent applications and provided a call-to-action to navigate to the dedicated Applications page, where users can search, filter, and manage all their applications.
+
+--- 
 
 ### Question 7
 
@@ -375,5 +387,32 @@ Each application row shares the same layout and styling, so I extracted it into 
 
 ------------------------------------------------------------------------------------------------------------------------
 
+## Feature 6 : Dashboard (week chart) and (Upcoming Interview)
 
+### Question 1
 
+**Why did you choose Recharts?**
+
+### Answer
+
+I chose Recharts because it's a React-first charting library with reusable components, responsive layouts, and good customization. It integrates naturally with React's component architecture and is commonly used for dashboards.
+
+---
+
+### Question 2
+
+**Why didn't you define the data inside the chart component?**
+
+### Answer
+
+I separated the mock data from the presentation layer to follow the Single Responsibility Principle. The chart component focuses only on rendering the visualization, while the data source can later be replaced with an API without restructuring the component.
+
+---
+
+### Question 3
+
+**How does Recharts know what to display?**
+
+### Answer 
+
+The BarChart receives an array of objects through its data prop. Each chart element uses a dataKey to identify which property from each object it should render. For example, XAxis uses the day property for labels, while Bar uses the applications property to determine the height of each bar.
