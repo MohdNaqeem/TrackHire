@@ -1,0 +1,58 @@
+import { RiCloseLine } from "react-icons/ri";
+import ModalOverlay from "./ModalOverlay";
+
+const AddApplicationModal = ({ onClose }) => {
+  return (
+    <ModalOverlay>
+      <div className="w-full max-w-2xl rounded-3xl bg-white shadow-2xl">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-[#ECECF3] px-8 py-6">
+          <div>
+            <h2 className="text-2xl font-bold text-[#211A52]">
+              Add New Application
+            </h2>
+
+            <p className="mt-1 text-sm text-[#8A86A3]">
+              Fill in the details below to track a new job application.
+            </p>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="rounded-xl p-2 transition hover:bg-[#F5F6FA]"
+          >
+            <RiCloseLine
+              size={24}
+              className="text-[#5F5B80]"
+            />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="p-8">
+          <div className="flex h-72 items-center justify-center rounded-2xl border border-dashed border-[#D7D8E5] bg-[#FAFBFD]">
+            <p className="text-[#8A86A3]">
+              Application Form Coming Next...
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="flex justify-end gap-3 border-t border-[#ECECF3] px-8 py-6">
+          <button
+            onClick={onClose}
+            className="rounded-xl border border-[#E7E7EF] px-6 py-3 font-medium text-[#5F5B80] transition hover:bg-[#F5F6FA]"
+          >
+            Cancel
+          </button>
+
+          <button className="rounded-xl bg-[#3CBFA4] px-6 py-3 font-medium text-white transition hover:bg-[#31AE94]">
+            Add Application
+          </button>
+        </div>
+      </div>
+    </ModalOverlay>
+  );
+};
+
+export default AddApplicationModal;

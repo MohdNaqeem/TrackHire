@@ -419,7 +419,7 @@ The BarChart receives an array of objects through its data prop. Each chart elem
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Feature 6 : Application Header / Toolbar
+## Feature 6 : Application Header / Toolbar / pagination
 
 ### Question 1
 
@@ -492,3 +492,21 @@ The search value is shared between the SearchBar and the ApplicationsTable. Sinc
 The Applications page follows a parent-child architecture where Applications.jsx is the single source of truth. It stores the search term, selected status, and sort option using useState. The application data is processed inside useMemo, where I first create a copy of the original array, then apply search, status filtering, and sorting. I used useMemo so these calculations only run when the search term, status, or sort option changes. The processed data is stored in filteredApplications and passed to ApplicationsTable as props. The toolbar receives the state and setter functions and forwards them to the SearchBar, StatusFilter, and SortDropdown. When the user interacts with any of these controls, the state updates, React re-renders the component, useMemo recalculates the data if needed, and the table automatically displays the updated results. This keeps the page modular, reusable, and follows React's one-way data flow.
 
 ---
+
+### Question 8
+
+**Explain complete Pagination Flow**
+
+### Answer
+
+Pagination in my project is controlled by the parent Applications.jsx component. I store the active page in currentPage using useState and define how many records should appear per page with itemsPerPage. After applying search, status filtering, and sorting inside useMemo, I calculate the total number of pages using Math.ceil(). Based on the current page, I compute the start and end indexes and use slice() to extract only the records for that page. Those records are passed to ApplicationsTable, while pagination-related values such as the current page, total pages, and setter function are passed to the Pagination component. When the user clicks a page number or the Previous/Next buttons, setCurrentPage() updates the state, React re-renders the component, recalculates the slice, and the table displays the records for the selected page.
+
+---
+
+### Question 9
+
+**Why did we keep the state in Applications.jsx instead of AddApplicationModal.jsx?**
+
+### Answer
+
+The modal doesn't decide when it should appear. The Applications page decides that. That's why I lifted the state to the parent component. The parent controls the modal's visibility and passes callback functions to child components. This follows React's one-way data flow and keeps the application easier to manage.

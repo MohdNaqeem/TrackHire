@@ -6,6 +6,7 @@ import ApplicationsTable from "../../components/Applications/ApplicationsTable";
 
 import { applicationsData } from "../../data/applicationsData";
 import Pagination from "../../components/Applications/Pagination";
+import AddApplicationModal from "../../components/Applications/AddApplicationModal";
 
 const Applications = () => {
   // Search State
@@ -20,6 +21,9 @@ const Applications = () => {
   // Pagination page
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
+
+  // Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Search + Filter + Sort
   const filteredApplications = useMemo(() => {
@@ -74,7 +78,7 @@ const Applications = () => {
 
   return (
     <section className="p-6">
-      <ApplicationsHeader />
+      <ApplicationsHeader onAddApplication={() => setIsModalOpen(true)} />
 
       <ApplicationsToolbar
         searchTerm={searchTerm}
@@ -94,6 +98,9 @@ const Applications = () => {
         totalItems={filteredApplications.length}
         itemsPerPage={itemsPerPage}
       />
+      {isModalOpen && (
+        <AddApplicationModal onClose={() => setIsModalOpen(false)} />
+      )}
     </section>
   );
 };
