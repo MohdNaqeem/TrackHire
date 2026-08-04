@@ -480,3 +480,15 @@ Each application has the same structure. Instead of repeating the markup for eve
 ### Answer 
 
 The search value is shared between the SearchBar and the ApplicationsTable. Since multiple components need access to the same state, I lifted it to their closest common parent, Applications.jsx. The SearchBar becomes a controlled component that receives its value and onChange handler through props.
+
+---
+
+### Question 7
+
+**Explain the complete flow of your Applications page.**
+
+### Answer 
+
+The Applications page follows a parent-child architecture where Applications.jsx is the single source of truth. It stores the search term, selected status, and sort option using useState. The application data is processed inside useMemo, where I first create a copy of the original array, then apply search, status filtering, and sorting. I used useMemo so these calculations only run when the search term, status, or sort option changes. The processed data is stored in filteredApplications and passed to ApplicationsTable as props. The toolbar receives the state and setter functions and forwards them to the SearchBar, StatusFilter, and SortDropdown. When the user interacts with any of these controls, the state updates, React re-renders the component, useMemo recalculates the data if needed, and the table automatically displays the updated results. This keeps the page modular, reusable, and follows React's one-way data flow.
+
+---

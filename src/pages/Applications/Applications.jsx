@@ -5,6 +5,7 @@ import ApplicationsToolbar from "../../components/Applications/ApplicationsToolb
 import ApplicationsTable from "../../components/Applications/ApplicationsTable";
 
 import { applicationsData } from "../../data/applicationsData";
+import Pagination from "../../components/Applications/Pagination";
 
 const Applications = () => {
   // Search State
@@ -15,6 +16,10 @@ const Applications = () => {
 
   // Sort State
   const [sortBy, setSortBy] = useState("Newest");
+
+  // Pagination page
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   // Search + Filter + Sort
   const filteredApplications = useMemo(() => {
@@ -27,17 +32,14 @@ const Applications = () => {
           application.company
             .toLowerCase()
             .includes(searchTerm.toLowerCase()) ||
-          application.position
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
+          application.position.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
     // Status Filter
     if (selectedStatus !== "All Status") {
       filtered = filtered.filter(
-        (application) =>
-          application.status === selectedStatus
+        (application) => application.status === selectedStatus,
       );
     }
 
@@ -48,15 +50,11 @@ const Applications = () => {
         break;
 
       case "Company (A-Z)":
-        filtered.sort((a, b) =>
-          a.company.localeCompare(b.company)
-        );
+        filtered.sort((a, b) => a.company.localeCompare(b.company));
         break;
 
       case "Company (Z-A)":
-        filtered.sort((a, b) =>
-          b.company.localeCompare(a.company)
-        );
+        filtered.sort((a, b) => b.company.localeCompare(a.company));
         break;
 
       default:
@@ -65,6 +63,14 @@ const Applications = () => {
 
     return filtered;
   }, [searchTerm, selectedStatus, sortBy]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredApplications.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentApplications = filteredApplications.slice(startIndex, endIndex);
 
   return (
     <section className="p-6">
@@ -79,8 +85,14 @@ const Applications = () => {
         setSortBy={setSortBy}
       />
 
-      <ApplicationsTable
-        applications={filteredApplications}
+      <ApplicationsTable applications={currentApplications} />
+
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+        totalItems={filteredApplications.length}
+        itemsPerPage={itemsPerPage}
       />
     </section>
   );
