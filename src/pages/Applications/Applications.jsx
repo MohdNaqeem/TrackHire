@@ -22,12 +22,72 @@ const Applications = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
+  // Applications State
+  const [applications, setApplications] = useState(applicationsData);
+
+  // Form State
+  const [formData, setFormData] = useState({
+    company: "",
+    position: "",
+    status: "Applied",
+    appliedDate: "",
+    location: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    // Basic Validation
+    if (
+      !formData.company.trim() ||
+      !formData.position.trim() ||
+      !formData.appliedDate ||
+      !formData.location.trim()
+    ) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    const newApplication = {
+      id: crypto.randomUUID(),
+      company: formData.company,
+      position: formData.position,
+      status: formData.status,
+      appliedDate: formData.appliedDate,
+      location: formData.location,
+    };
+
+    setApplications((prevApplications) => [
+      newApplication,
+      ...prevApplications,
+    ]);
+
+    setFormData({
+      company: "",
+      position: "",
+      status: "Applied",
+      appliedDate: "",
+      location: "",
+    });
+
+    setCurrentPage(1);
+
+    setIsModalOpen(false);
+  };
+
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Search + Filter + Sort
   const filteredApplications = useMemo(() => {
-    let filtered = [...applicationsData];
+    let filtered = [...applications];
 
     // Search
     if (searchTerm.trim() !== "") {
@@ -66,7 +126,7 @@ const Applications = () => {
     }
 
     return filtered;
-  }, [searchTerm, selectedStatus, sortBy]);
+  }, [applications, searchTerm, selectedStatus, sortBy]);
 
   // Pagination
   const totalPages = Math.ceil(filteredApplications.length / itemsPerPage);
@@ -99,7 +159,12 @@ const Applications = () => {
         itemsPerPage={itemsPerPage}
       />
       {isModalOpen && (
-        <AddApplicationModal onClose={() => setIsModalOpen(false)} />
+        <AddApplicationModal
+          onClose={() => setIsModalOpen(false)}
+          formData={formData}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+        />
       )}
     </section>
   );

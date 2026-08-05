@@ -1,4 +1,11 @@
-const FormInput = ({ label, type = "text", placeholder, value, onChange }) => {
+const FormInput = ({
+  label,
+  name,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+}) => {
   return (
     <div>
       <label className="mb-2 block text-sm font-semibold text-[#211A52]">
@@ -6,6 +13,7 @@ const FormInput = ({ label, type = "text", placeholder, value, onChange }) => {
       </label>
 
       <input
+        name={name}
         type={type}
         placeholder={placeholder}
         value={value}

@@ -2,7 +2,12 @@ import { RiCloseLine } from "react-icons/ri";
 import ModalOverlay from "./ModalOverlay";
 import ApplicationForm from "./ApplicationForm";
 
-const AddApplicationModal = ({ onClose }) => {
+const AddApplicationModal = ({
+  onClose,
+  formData,
+  handleInputChange,
+  handleSubmit,
+}) => {
   return (
     <ModalOverlay>
       <div className="w-full max-w-2xl rounded-3xl bg-white shadow-2xl">
@@ -29,7 +34,10 @@ const AddApplicationModal = ({ onClose }) => {
         {/* Body */}
         {/* Body */}
         <div className="px-8 py-7">
-          <ApplicationForm />
+          <ApplicationForm
+            formData={formData}
+            handleInputChange={handleInputChange}
+          />
         </div>
 
         {/* Footer */}
@@ -41,7 +49,11 @@ const AddApplicationModal = ({ onClose }) => {
             Cancel
           </button>
 
-          <button className="rounded-xl bg-[#3CBFA4] px-6 py-3 font-medium text-white transition hover:bg-[#31AE94]">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="rounded-xl bg-[#3CBFA4] px-6 py-3 font-medium text-white transition hover:bg-[#31AE94]"
+          >
             Add Application
           </button>
         </div>

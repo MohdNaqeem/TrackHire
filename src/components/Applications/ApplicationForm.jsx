@@ -1,65 +1,47 @@
-import { useState } from "react";
-
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 
-const ApplicationForm = () => {
-  const [company, setCompany] = useState("");
-  const [position, setPosition] = useState("");
-  const [status, setStatus] = useState("Applied");
-  const [appliedDate, setAppliedDate] = useState("");
-  const [location, setLocation] = useState("");
-
+const ApplicationForm = ({ formData, handleInputChange }) => {
   return (
     <form className="space-y-5">
       <FormInput
         label="Company Name"
+        name="company"
         placeholder="Enter company name"
-        value={company}
-        onChange={(e) =>
-          setCompany(e.target.value)
-        }
+        value={formData.company}
+        onChange={handleInputChange}
       />
 
       <FormInput
         label="Position"
+        name="position"
         placeholder="Enter job position"
-        value={position}
-        onChange={(e) =>
-          setPosition(e.target.value)
-        }
+        value={formData.position}
+        onChange={handleInputChange}
       />
 
       <FormSelect
         label="Status"
-        value={status}
-        onChange={(e) =>
-          setStatus(e.target.value)
-        }
-        options={[
-          "Applied",
-          "Interview",
-          "Offer",
-          "Rejected",
-        ]}
+        name="status"
+        value={formData.status}
+        onChange={handleInputChange}
+        options={["Applied", "Interview", "Offer", "Rejected"]}
       />
 
       <FormInput
         label="Applied Date"
+        name="appliedDate"
         type="date"
-        value={appliedDate}
-        onChange={(e) =>
-          setAppliedDate(e.target.value)
-        }
+        value={formData.appliedDate}
+        onChange={handleInputChange}
       />
 
       <FormInput
         label="Location"
+        name="location"
         placeholder="Enter location"
-        value={location}
-        onChange={(e) =>
-          setLocation(e.target.value)
-        }
+        value={formData.location}
+        onChange={handleInputChange}
       />
     </form>
   );
