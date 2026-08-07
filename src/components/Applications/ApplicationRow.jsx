@@ -1,7 +1,4 @@
-import {
-  RiArrowRightLine,
-  RiBuildingLine,
-} from "react-icons/ri";
+import { RiArrowRightLine, RiBuildingLine } from "react-icons/ri";
 
 const statusStyles = {
   Applied: "bg-[#FEF3C7] text-[#B76E00]",
@@ -11,11 +8,13 @@ const statusStyles = {
 };
 
 const ApplicationRow = ({
+  application,
   company,
   position,
   status,
   appliedDate,
   location,
+  onEdit,
 }) => {
   return (
     <tr className="border-b border-[#ECECF3] transition hover:bg-[#FAFBFD]">
@@ -23,20 +22,13 @@ const ApplicationRow = ({
       <td className="px-6 py-5">
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5F6FA]">
-            <RiBuildingLine
-              size={20}
-              className="text-[#3CBFA4]"
-            />
+            <RiBuildingLine size={20} className="text-[#3CBFA4]" />
           </div>
 
           <div>
-            <h3 className="font-semibold text-[#211A52]">
-              {company}
-            </h3>
+            <h3 className="font-semibold text-[#211A52]">{company}</h3>
 
-            <p className="text-sm text-[#8A86A3]">
-              {position}
-            </p>
+            <p className="text-sm text-[#8A86A3]">{position}</p>
           </div>
         </div>
       </td>
@@ -53,22 +45,18 @@ const ApplicationRow = ({
       </td>
 
       {/* Applied Date */}
-      <td className="px-6 py-5 text-sm text-[#5F5B80]">
-        {appliedDate}
-      </td>
+      <td className="px-6 py-5 text-sm text-[#5F5B80]">{appliedDate}</td>
 
       {/* Location */}
-      <td className="px-6 py-5 text-sm text-[#5F5B80]">
-        {location}
-      </td>
+      <td className="px-6 py-5 text-sm text-[#5F5B80]">{location}</td>
 
       {/* Action */}
       <td className="px-6 py-5 text-right">
-        <button className="rounded-lg p-2 transition hover:bg-[#F5F6FA]">
-          <RiArrowRightLine
-            size={20}
-            className="text-[#211A52]"
-          />
+        <button
+          onClick={() => onEdit(application)}
+          className="rounded-lg p-2 transition hover:bg-[#F5F6FA]"
+        >
+          <RiArrowRightLine size={20} className="text-[#211A52]" />
         </button>
       </td>
     </tr>

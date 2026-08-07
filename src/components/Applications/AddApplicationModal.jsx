@@ -7,6 +7,7 @@ const AddApplicationModal = ({
   formData,
   handleInputChange,
   handleSubmit,
+  editingApplication,
 }) => {
   return (
     <ModalOverlay>
@@ -54,7 +55,7 @@ const AddApplicationModal = ({
             onClick={handleSubmit}
             className="rounded-xl bg-[#3CBFA4] px-6 py-3 font-medium text-white transition hover:bg-[#31AE94]"
           >
-            Add Application
+            {editingApplication ? "Update Application" : "Add Application"}
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import ApplicationRow from "./ApplicationRow";
 
-const ApplicationsTable = ({ applications }) => {
+const ApplicationsTable = ({ applications, onEdit }) => {
   return (
     <section className="overflow-hidden rounded-3xl border border-[#E7E7EF] bg-white shadow-sm">
       <div className="overflow-x-auto">
@@ -36,19 +36,18 @@ const ApplicationsTable = ({ applications }) => {
               applications.map((application) => (
                 <ApplicationRow
                   key={application.id}
+                  application={application}
                   company={application.company}
                   position={application.position}
                   status={application.status}
                   appliedDate={application.appliedDate}
                   location={application.location}
+                  onEdit={onEdit}
                 />
               ))
             ) : (
               <tr>
-                <td
-                  colSpan="5"
-                  className="py-10 text-center text-[#8A86A3]"
-                >
+                <td colSpan="5" className="py-10 text-center text-[#8A86A3]">
                   No applications found.
                 </td>
               </tr>

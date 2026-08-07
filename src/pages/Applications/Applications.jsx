@@ -34,6 +34,9 @@ const Applications = () => {
     location: "",
   });
 
+  // Edit State
+  const [editingApplication, setEditingApplication] = useState(null);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -55,20 +58,32 @@ const Applications = () => {
       return;
     }
 
-    const newApplication = {
-      id: crypto.randomUUID(),
-      company: formData.company,
-      position: formData.position,
-      status: formData.status,
-      appliedDate: formData.appliedDate,
-      location: formData.location,
-    };
+    if (editingApplication) {
+      // Update Existing Application
+      setApplications((prevApplications) =>
+        prevApplications.map((application) =>
+          application.id === editingApplication.id
+            ? {
+                ...application,
+                ...formData,
+              }
+            : application,
+        ),
+      );
+    } else {
+      // Add New Application
+      const newApplication = {
+        id: crypto.randomUUID(),
+        ...formData,
+      };
 
-    setApplications((prevApplications) => [
-      newApplication,
-      ...prevApplications,
-    ]);
+      setApplications((prevApplications) => [
+        newApplication,
+        ...prevApplications,
+      ]);
+    }
 
+    // Reset Form
     setFormData({
       company: "",
       position: "",
@@ -77,9 +92,31 @@ const Applications = () => {
       location: "",
     });
 
+    // Exit Edit Mode
+    setEditingApplication(null);
+
+    // Go to First Page
     setCurrentPage(1);
 
+    // Close Modal
     setIsModalOpen(false);
+  };
+
+  const handleEdit = (application) => {
+    // Store the application being edited
+    setEditingApplication(application);
+
+    // Fill the form with existing values
+    setFormData({
+      company: application.company,
+      position: application.position,
+      status: application.status,
+      appliedDate: application.appliedDate,
+      location: application.location,
+    });
+
+    // Open the modal
+    setIsModalOpen(true);
   };
 
   // Modal State
@@ -149,7 +186,10 @@ const Applications = () => {
         setSortBy={setSortBy}
       />
 
-      <ApplicationsTable applications={currentApplications} />
+      <ApplicationsTable
+        applications={currentApplications}
+        onEdit={handleEdit}
+      />
 
       <Pagination
         currentPage={currentPage}
@@ -164,6 +204,7 @@ const Applications = () => {
           formData={formData}
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
+          editingApplication={editingApplication}
         />
       )}
     </section>
