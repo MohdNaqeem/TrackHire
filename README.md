@@ -103,7 +103,7 @@ npm run dev
 |---|---|
 | Project setup & routing | ✅ Done |
 | Static pages & navbar | ✅ Done |
-| Hero section | 🚧 In progress |
+| Hero section | ✅ Done |
 | Kanban board UI | 📅 Planned |
 | Job CRUD (frontend, mock data) | 📅 Planned |
 | Backend API | 📅 Planned |
