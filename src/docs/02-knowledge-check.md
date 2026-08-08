@@ -419,7 +419,7 @@ The BarChart receives an array of objects through its data prop. Each chart elem
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Feature 6 : Application Header / Toolbar / pagination
+## Feature 6 : Application Header / Toolbar / pagination / update and delete button
 
 ### Question 1
 
@@ -510,3 +510,23 @@ Pagination in my project is controlled by the parent Applications.jsx component.
 ### Answer
 
 The modal doesn't decide when it should appear. The Applications page decides that. That's why I lifted the state to the parent component. The parent controls the modal's visibility and passes callback functions to child components. This follows React's one-way data flow and keeps the application easier to manage.
+
+--- 
+
+### Question 10 
+
+**Explain how your delete functionality works.**
+
+### Answer 
+
+The Applications page owns the applications state. Each ApplicationRow receives an onDelete callback from the parent through ApplicationsTable. When the user clicks delete, the selected application is passed back to Applications.jsx and stored in deletingApplication. This state conditionally renders a DeleteApplicationModal. If the user confirms, confirmDelete uses filter() to create a new array excluding the selected application's ID, then updates the applications state. I also recalculate the total number of pages after deletion and make sure the current page doesn't point to a page that no longer exists. Finally, I clear deletingApplication to close the modal.
+
+---
+
+### Question 11
+
+**How do you handle pagination when search or filter changes?**
+
+### Answer 
+
+Search, filter, and sort are controlled by handlers in ApplicationsToolbar. Each handler first updates the relevant state and then resets currentPage to 1. This prevents the user from staying on an invalid page when the filtered result set becomes smaller.
