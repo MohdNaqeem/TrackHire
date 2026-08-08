@@ -7,6 +7,7 @@ import ApplicationsTable from "../../components/Applications/ApplicationsTable";
 import { applicationsData } from "../../data/applicationsData";
 import Pagination from "../../components/Applications/Pagination";
 import AddApplicationModal from "../../components/Applications/AddApplicationModal";
+import DeleteApplicationModal from "../../components/Applications/DeleteApplicationModal";
 
 const Applications = () => {
   // Search State
@@ -36,6 +37,9 @@ const Applications = () => {
 
   // Edit State
   const [editingApplication, setEditingApplication] = useState(null);
+
+  // Delete state
+  const [deletingApplication, setDeletingApplication] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -119,6 +123,26 @@ const Applications = () => {
     setIsModalOpen(true);
   };
 
+  // delete function
+  const handleDelete = (application) => {
+    setDeletingApplication(application);
+  };
+
+  const confirmDelete = () => {
+    if (!deletingApplication) {
+      return;
+    }
+
+    setApplications((prevApplications) =>
+      prevApplications.filter(
+        (application) => application.id !== deletingApplication.id,
+      ),
+    );
+
+    setDeletingApplication(null);
+    setCurrentPage(1);
+  };
+
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -189,6 +213,7 @@ const Applications = () => {
       <ApplicationsTable
         applications={currentApplications}
         onEdit={handleEdit}
+        onDelete={handleDelete}
       />
 
       <Pagination
@@ -205,6 +230,14 @@ const Applications = () => {
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
           editingApplication={editingApplication}
+        />
+      )}
+
+      {deletingApplication && (
+        <DeleteApplicationModal
+          application={deletingApplication}
+          onClose={() => setDeletingApplication(null)}
+          onConfirm={confirmDelete}
         />
       )}
     </section>

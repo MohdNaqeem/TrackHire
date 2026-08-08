@@ -1,4 +1,8 @@
-import { RiArrowRightLine, RiBuildingLine } from "react-icons/ri";
+import {
+  RiArrowRightLine,
+  RiBuildingLine,
+  RiDeleteBinLine,
+} from "react-icons/ri";
 
 const statusStyles = {
   Applied: "bg-[#FEF3C7] text-[#B76E00]",
@@ -15,6 +19,7 @@ const ApplicationRow = ({
   appliedDate,
   location,
   onEdit,
+  onDelete,
 }) => {
   return (
     <tr className="border-b border-[#ECECF3] transition hover:bg-[#FAFBFD]">
@@ -52,12 +57,28 @@ const ApplicationRow = ({
 
       {/* Action */}
       <td className="px-6 py-5 text-right">
-        <button
-          onClick={() => onEdit(application)}
-          className="rounded-lg p-2 transition hover:bg-[#F5F6FA]"
-        >
-          <RiArrowRightLine size={20} className="text-[#211A52]" />
-        </button>
+        <div className="flex justify-end gap-2">
+          {/* Edit */}
+          <button
+            onClick={() => onEdit(application)}
+            title="Edit application"
+            className="rounded-lg p-2 transition hover:bg-[#F5F6FA]"
+          >
+            <RiArrowRightLine size={20} className="text-[#211A52]" />
+          </button>
+
+          {/* Delete */}
+          <button
+            onClick={() => onDelete(application)}
+            title="Delete application"
+            className="rounded-lg p-2 transition hover:bg-[#FEF2F2]"
+          >
+            <RiDeleteBinLine
+              size={19}
+              className="text-[#DC2626] transition-colors"
+            />
+          </button>
+        </div>
       </td>
     </tr>
   );

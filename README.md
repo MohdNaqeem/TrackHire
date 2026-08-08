@@ -131,7 +131,7 @@ npm run dev
 **Mohd Naqeem Momin**
 Aspiring Full Stack (MERN) Developer
 
-[GitHub](add your GitHub profile link) · [LinkedIn](add your LinkedIn link) · [Portfolio](add link if you have one)
+[GitHub](https://github.com/MohdNaqeem/) · [LinkedIn](https://www.linkedin.com/in/mohammad-naqeem-raza-momin-a8202a21a/) · [Portfolio]()
 
 ---
 

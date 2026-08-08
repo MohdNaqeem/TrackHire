@@ -1,6 +1,6 @@
 import ApplicationRow from "./ApplicationRow";
 
-const ApplicationsTable = ({ applications, onEdit }) => {
+const ApplicationsTable = ({ applications, onEdit, onDelete, }) => {
   return (
     <section className="overflow-hidden rounded-3xl border border-[#E7E7EF] bg-white shadow-sm">
       <div className="overflow-x-auto">
@@ -43,6 +43,7 @@ const ApplicationsTable = ({ applications, onEdit }) => {
                   appliedDate={application.appliedDate}
                   location={application.location}
                   onEdit={onEdit}
+                  onDelete={onDelete}
                 />
               ))
             ) : (
