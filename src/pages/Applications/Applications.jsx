@@ -129,19 +129,27 @@ const Applications = () => {
   };
 
   const confirmDelete = () => {
-    if (!deletingApplication) {
-      return;
-    }
+  if (!deletingApplication) {
+    return;
+  }
 
-    setApplications((prevApplications) =>
-      prevApplications.filter(
-        (application) => application.id !== deletingApplication.id,
-      ),
-    );
+  const updatedApplications = applications.filter(
+    (application) =>
+      application.id !== deletingApplication.id
+  );
 
-    setDeletingApplication(null);
-    setCurrentPage(1);
-  };
+  setApplications(updatedApplications);
+
+  const newTotalPages = Math.ceil(
+    updatedApplications.length / itemsPerPage
+  );
+
+  setCurrentPage((prevPage) =>
+    Math.min(prevPage, Math.max(newTotalPages, 1))
+  );
+
+  setDeletingApplication(null);
+};
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -208,6 +216,7 @@ const Applications = () => {
         setSelectedStatus={setSelectedStatus}
         sortBy={sortBy}
         setSortBy={setSortBy}
+        setCurrentPage={setCurrentPage}
       />
 
       <ApplicationsTable
