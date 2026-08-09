@@ -8,6 +8,7 @@ const AddApplicationModal = ({
   handleInputChange,
   handleSubmit,
   editingApplication,
+  formErrors,
 }) => {
   return (
     <ModalOverlay>
@@ -38,6 +39,7 @@ const AddApplicationModal = ({
           <ApplicationForm
             formData={formData}
             handleInputChange={handleInputChange}
+            formErrors={formErrors}
           />
         </div>
 

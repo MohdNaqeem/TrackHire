@@ -1,4 +1,4 @@
-const FormSelect = ({ label, name, value, onChange, options }) => {
+const FormSelect = ({ label, name, value, onChange, options, error }) => {
   return (
     <div>
       <label className="mb-2 block text-sm font-semibold text-[#211A52]">
@@ -17,6 +17,10 @@ const FormSelect = ({ label, name, value, onChange, options }) => {
           </option>
         ))}
       </select>
+
+      {error && (
+        <p className="mt-1 text-xs font-medium text-[#DC2626]">{error}</p>
+      )}
     </div>
   );
 };

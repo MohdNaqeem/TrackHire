@@ -35,6 +35,9 @@ const Applications = () => {
     location: "",
   });
 
+  // Form Validation State
+  const [formErrors, setFormErrors] = useState({});
+
   // Edit State
   const [editingApplication, setEditingApplication] = useState(null);
 
@@ -50,15 +53,34 @@ const Applications = () => {
     }));
   };
 
+  // Form validation
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.company.trim()) {
+      errors.company = "Company name is required.";
+    }
+
+    if (!formData.position.trim()) {
+      errors.position = "Position is required.";
+    }
+
+    if (!formData.appliedDate) {
+      errors.appliedDate = "Applied date is required.";
+    }
+
+    if (!formData.location.trim()) {
+      errors.location = "Location is required.";
+    }
+
+    setFormErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = () => {
     // Basic Validation
-    if (
-      !formData.company.trim() ||
-      !formData.position.trim() ||
-      !formData.appliedDate ||
-      !formData.location.trim()
-    ) {
-      alert("Please fill all fields.");
+    if (!validateForm()) {
       return;
     }
 
@@ -129,27 +151,24 @@ const Applications = () => {
   };
 
   const confirmDelete = () => {
-  if (!deletingApplication) {
-    return;
-  }
+    if (!deletingApplication) {
+      return;
+    }
 
-  const updatedApplications = applications.filter(
-    (application) =>
-      application.id !== deletingApplication.id
-  );
+    const updatedApplications = applications.filter(
+      (application) => application.id !== deletingApplication.id,
+    );
 
-  setApplications(updatedApplications);
+    setApplications(updatedApplications);
 
-  const newTotalPages = Math.ceil(
-    updatedApplications.length / itemsPerPage
-  );
+    const newTotalPages = Math.ceil(updatedApplications.length / itemsPerPage);
 
-  setCurrentPage((prevPage) =>
-    Math.min(prevPage, Math.max(newTotalPages, 1))
-  );
+    setCurrentPage((prevPage) =>
+      Math.min(prevPage, Math.max(newTotalPages, 1)),
+    );
 
-  setDeletingApplication(null);
-};
+    setDeletingApplication(null);
+  };
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -239,6 +258,7 @@ const Applications = () => {
           handleInputChange={handleInputChange}
           handleSubmit={handleSubmit}
           editingApplication={editingApplication}
+          formErrors={formErrors}
         />
       )}
 

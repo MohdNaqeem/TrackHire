@@ -1,7 +1,7 @@
 import FormInput from "./FormInput";
 import FormSelect from "./FormSelect";
 
-const ApplicationForm = ({ formData, handleInputChange }) => {
+const ApplicationForm = ({ formData, handleInputChange, formErrors }) => {
   return (
     <form className="space-y-5">
       <FormInput
@@ -10,6 +10,7 @@ const ApplicationForm = ({ formData, handleInputChange }) => {
         placeholder="Enter company name"
         value={formData.company}
         onChange={handleInputChange}
+        error={formErrors.company}
       />
 
       <FormInput
@@ -18,6 +19,7 @@ const ApplicationForm = ({ formData, handleInputChange }) => {
         placeholder="Enter job position"
         value={formData.position}
         onChange={handleInputChange}
+        error={formErrors.position}
       />
 
       <FormSelect
@@ -26,6 +28,7 @@ const ApplicationForm = ({ formData, handleInputChange }) => {
         value={formData.status}
         onChange={handleInputChange}
         options={["Applied", "Interview", "Offer", "Rejected"]}
+        error={formErrors.status}
       />
 
       <FormInput
@@ -34,6 +37,7 @@ const ApplicationForm = ({ formData, handleInputChange }) => {
         type="date"
         value={formData.appliedDate}
         onChange={handleInputChange}
+        error={formErrors.appliedDate}
       />
 
       <FormInput
@@ -42,6 +46,7 @@ const ApplicationForm = ({ formData, handleInputChange }) => {
         placeholder="Enter location"
         value={formData.location}
         onChange={handleInputChange}
+        error={formErrors.location}
       />
     </form>
   );
