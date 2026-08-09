@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { RiArrowRightLine } from "react-icons/ri";
 
 import ApplicationRow from "./ApplicationRow";
-import { recentApplications } from "./recentApplicationsData";
+import { applicationsData } from "../../../data/applicationsData";
 
 const RecentApplications = () => {
+  const recentApplications = [...applicationsData]
+    .sort((a, b) => new Date(b.appliedDate) - new Date(a.appliedDate))
+    .slice(0, 3);
+
   return (
     <section className="mt-8 rounded-3xl border border-[#E7E7EF] bg-white p-7 shadow-sm">
       {/* Header */}
@@ -24,7 +28,6 @@ const RecentApplications = () => {
           className="flex items-center gap-2 rounded-xl bg-[#F5F6FA] px-4 py-2 text-sm font-medium text-[#211A52] transition-all duration-300 hover:bg-[#3CBFA4] hover:text-white"
         >
           View All Applications
-
           <RiArrowRightLine size={18} />
         </Link>
       </div>
@@ -57,7 +60,7 @@ const RecentApplications = () => {
           </thead>
 
           <tbody>
-            {recentApplications.slice(0, 3).map((application) => (
+            {recentApplications.map((application) => (
               <ApplicationRow
                 key={application.id}
                 company={application.company}
