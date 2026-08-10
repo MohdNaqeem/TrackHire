@@ -5,7 +5,7 @@ const Sidebar = () => {
   const LogoutIcon = logout.icon;
 
   return (
-    <aside className="flex h-screen w-72 flex-col justify-between border-r border-[#E7E7EF] bg-white p-6">
+    <aside className="w-[280px] shrink-0 border-r border-[#E7E7EF] bg-white px-6 py-7">
       {/* Logo */}
       <div>
         <h1 className="text-3xl font-bold text-[#211A52]">

@@ -4,11 +4,12 @@ import Header from "../components/Dashboard/Header/Header";
 
 const DashboardLayout = () => {
   return (
-    <div className="flex min-h-screen bg-[#F7F7FB]">
+    <div className="flex min-h-screen">
       <Sidebar />
 
-      <main className="flex-1 p-8">
+      <main className="min-w-0 flex-1 p-8">
         <Header />
+
         <Outlet />
       </main>
     </div>
