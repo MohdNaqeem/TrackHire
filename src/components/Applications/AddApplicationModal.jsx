@@ -16,8 +16,8 @@ const AddApplicationModal = ({
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[#ECECF3] px-8 py-7">
           <div>
-            <h2 className="text-2xl font-bold text-[#211A52]">
-              Add New Application
+            <h2>
+              {editingApplication ? "Edit Application" : "Add New Application"}
             </h2>
 
             <p className="mt-1 text-sm text-[#8A86A3]">
