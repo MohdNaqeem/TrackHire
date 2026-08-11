@@ -1,7 +1,7 @@
 import CalendarDay from "./CalendarDay";
 import { calendarEvents } from "../../data/calendarData";
 
-const CalendarGrid = ({ currentDate }) => {
+const CalendarGrid = ({ currentDate, onEventClick }) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
 
@@ -113,6 +113,7 @@ const CalendarGrid = ({ currentDate }) => {
             isCurrentMonth={item.isCurrentMonth}
             isToday={isSameDate(item.date, today)}
             events={getEventsForDate(item.date)}
+            onEventClick={onEventClick}
           />
         ))}
       </div>

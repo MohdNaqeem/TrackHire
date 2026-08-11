@@ -3,11 +3,14 @@ import { useState } from "react";
 import CalendarHeader from "../../components/Calendar/CalendarHeader";
 import CalendarGrid from "../../components/Calendar/CalendarGrid";
 import UpcomingEvents from "../../components/Calendar/UpcomingEvents";
+import EventDetailsModal from "../../components/Calendar/EventDetailsModal";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(
     new Date(2026, 7, 1),
   );
+
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const handlePreviousMonth = () => {
     setCurrentDate(
@@ -67,12 +70,25 @@ const Calendar = () => {
             onToday={handleToday}
           />
 
-          <CalendarGrid currentDate={currentDate} />
+          <CalendarGrid
+            currentDate={currentDate}
+            onEventClick={setSelectedEvent}
+          />
         </section>
 
         {/* Upcoming Events */}
-        <UpcomingEvents />
+        <UpcomingEvents
+          onEventClick={setSelectedEvent}
+        />
       </div>
+
+      {/* Event Details Modal */}
+      {selectedEvent && (
+        <EventDetailsModal
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+        />
+      )}
     </section>
   );
 };

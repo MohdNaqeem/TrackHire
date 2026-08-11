@@ -6,7 +6,7 @@ import {
 
 import { calendarEvents } from "../../data/calendarData";
 
-const UpcomingEvents = () => {
+const UpcomingEvents = ({ onEventClick }) => {
   const today = new Date();
 
   const upcomingEvents = calendarEvents
@@ -35,9 +35,11 @@ const UpcomingEvents = () => {
       {upcomingEvents.length > 0 ? (
         <div className="space-y-4">
           {upcomingEvents.slice(0, 5).map((event) => (
-            <div
+            <button
               key={event.id}
-              className="rounded-2xl border border-[#ECECF3] bg-[#FAFAFC] p-4 transition hover:border-[#D9D9E5]"
+              type="button"
+              onClick={() => onEventClick(event)}
+              className="cursor-pointer w-full rounded-2xl border border-[#ECECF3] bg-[#FAFAFC] p-4 text-left transition-all duration-200 hover:border-[#3CBFA4] hover:shadow-sm"
             >
               {/* Company */}
               <div className="flex items-start gap-3">
@@ -74,7 +76,7 @@ const UpcomingEvents = () => {
                   {event.time} · {event.mode}
                 </span>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       ) : (
