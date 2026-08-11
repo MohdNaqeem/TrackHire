@@ -695,5 +695,116 @@ The Kanban page passes:
 - `onConfirm` → runs the delete function.
 This avoids duplicate components and keeps the delete UI consistent across the application.
 
+------------------------------------------------------------------------------------------------------------------------
+
+## Feature 7 : Calendar page
+
+### Question 1
+
+**What is the responsibility of `calendarData.js`?**
+
+### Answer 
+
+`calendarData.js` stores the calendar event data such as company, event type, date, time, and mode.
+It does not display anything. Components import this data and use it to display events on the calendar and in the Upcoming Events section.
+
+---
+
+### Question 2
+
+**What is the responsibility of `Calendar.jsx`?**
+
+### Answer 
+
+`Calendar.jsx` is the main parent component of the Calendar page.
+
+It manages the currently selected month using React state and handles the Previous Month, Next Month, and Today buttons.
+
+It also renders the main Calendar components:
+- CalendarHeader
+- CalendarGrid
+- UpcomingEvents
+
+The basic flow is: Calendar.jsx → manages state → passes data/functions to child components.
+
+---
+
+### Question 3
+
+**How does `CalendarGrid.jsx` generate the calendar?**
+
+### Answer 
+
+`CalendarGrid.jsx` calculates:
+
+- The first day of the selected month
+- The number of days in the month
+- Previous month's remaining dates
+- Current month's dates
+- Next month's dates
+
+It creates a 42-cell calendar grid so the calendar maintains a consistent 6-row layout.
+
+It then passes each date to `CalendarDay`.
+
+---
+
+### Question 4
+
+**How are events displayed on the correct calendar date?**
+
+### Answer 
+
+`CalendarGrid.jsx` uses `getEventsForDate()` to convert a calendar date into the `YYYY-MM-DD` format.
+
+It then compares that date with the `date` stored in `calendarData.js`.
+
+If the dates match, the event is passed to `CalendarDay`.
+
+The flow is:
+
+calendarData.js
+→ CalendarGrid
+→ find matching date
+→ CalendarDay
+→ display event
+
+---
+
+### Question 5
+
+**What is the responsibility of `CalendarDay.jsx`?**
+
+### Answer 
+
+`CalendarDay.jsx` displays one individual calendar cell.
+
+It receives:
+
+- `date`
+- `isCurrentMonth`
+- `isToday`
+- `events`
+
+It displays the date number, highlights today's date, and displays events belonging to that date.
+
+---
+
+### Question 6
+
+**How does month navigation work?**
+
+### Answer 
+
+`Calendar.jsx` stores the selected month in `currentDate`.
+
+When the user clicks Previous or Next:
+
+- The corresponding function runs.
+- `setCurrentDate()` updates the month.
+- React re-renders the Calendar.
+- `CalendarGrid` generates the dates for the new month.
+- `CalendarHeader` displays the new month and year.
+
 
 
