@@ -530,3 +530,73 @@ The Applications page owns the applications state. Each ApplicationRow receives 
 ### Answer 
 
 Search, filter, and sort are controlled by handlers in ApplicationsToolbar. Each handler first updates the relevant state and then resets currentPage to 1. This prevents the user from staying on an invalid page when the filtered result set becomes smaller.
+
+------------------------------------------------------------------------------------------------------------------------
+## Feature 7 : Kanban page
+
+### Question 1
+
+**How does the Kanban board separate applications into different columns?**
+
+### Answer 
+
+The Kanban board uses the `applications` state and JavaScript's `filter()` method to separate applications based on their `status`.
+
+For example:
+- `Applied` → applications where `status === "Applied"`
+- `Interview` → applications where `status === "Interview"`
+- `Offer` → applications where `status === "Offer"`
+- `Rejected` → applications where `status === "Rejected"`
+
+Each filtered array is then passed to a separate `KanbanColumn` component.
+
+# Flow
+applications data  
+→ filter by status  
+→ create status-specific arrays  
+→ pass arrays to `KanbanColumn`  
+→ render `KanbanCard`
+
+--- 
+
+### Question 2
+
+**Why did we use `useState` for applications instead of directly using `applicationsData`?**
+
+Initially, `applicationsData` was static mock data. After adding drag-and-drop, we needed the application status to change dynamically.
+
+So we created: const [applications, setApplications] = useState(applicationsData);
+
+---
+
+### Question 3
+
+**How does drag-and-drop work in our Kanban board?**
+
+### Answer
+
+KanbanColumn represents each status column such as Applied, Interview, Offer, and Rejected. It receives the applications belonging to that status and displays them as cards.
+
+KanbanCard represents one individual application. We make the card draggable and store its application ID when dragging starts.
+
+When the card is dropped into another column, the column gets the application ID and its own status. It then sends both values back to KanbanBoard.
+
+So the responsibility is:
+KanbanBoard → manages application state and status changes.
+KanbanColumn → acts as the drop area and identifies the new status.
+KanbanCard → represents and makes an application draggable.
+
+---
+
+### Question 
+
+**Why does the Kanban board automatically update after moving a card?**
+
+### Answer
+
+When a card is dropped into another column, we update the applications state using setApplications(). The application's status is changed from its old status to the new status.
+
+Since the Kanban columns are created using filter() based on the application's status, changing the status changes which filtered array the application belongs to.
+
+React detects the state change and re-renders the components.
+

@@ -1,6 +1,11 @@
 import KanbanCard from "./KanbanCard";
 
-const KanbanColumn = ({ title, applications, onDrop }) => {
+const KanbanColumn = ({
+  title,
+  applications,
+  onDrop,
+  onApplicationClick,
+}) => {
   const handleDragOver = (event) => {
     event.preventDefault();
   };
@@ -8,7 +13,9 @@ const KanbanColumn = ({ title, applications, onDrop }) => {
   const handleDrop = (event) => {
     event.preventDefault();
 
-    const applicationId = Number(event.dataTransfer.getData("applicationId"));
+    const applicationId = Number(
+      event.dataTransfer.getData("applicationId"),
+    );
 
     onDrop(applicationId, title);
   };
@@ -21,7 +28,9 @@ const KanbanColumn = ({ title, applications, onDrop }) => {
     >
       {/* Column Header */}
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="font-semibold text-[#211A52]">{title}</h2>
+        <h2 className="font-semibold text-[#211A52]">
+          {title}
+        </h2>
 
         <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#8A86A3]">
           {applications.length}
@@ -32,11 +41,17 @@ const KanbanColumn = ({ title, applications, onDrop }) => {
       <div className="space-y-3">
         {applications.length > 0 ? (
           applications.map((application) => (
-            <KanbanCard key={application.id} application={application} />
+            <KanbanCard
+              key={application.id}
+              application={application}
+              onClick={() => onApplicationClick(application)}
+            />
           ))
         ) : (
           <div className="rounded-2xl border border-dashed border-[#DCDCE7] bg-white p-6 text-center">
-            <p className="text-sm text-[#8A86A3]">No applications</p>
+            <p className="text-sm text-[#8A86A3]">
+              No applications
+            </p>
           </div>
         )}
       </div>
