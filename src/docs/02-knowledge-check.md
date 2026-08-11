@@ -661,3 +661,39 @@ We use conditional rendering with selectedApplication &&. This means React rende
 The modal receives an onClose function from KanbanBoard. When the user clicks the close button, this function sets:
 selectedApplication = null
 Since there is no longer a selected application, the conditional rendering becomes false and the modal disappears.
+
+---
+
+### Question 9
+
+**How does the delete flow work in the Kanban page?**
+
+### Answer 
+
+When the user clicks the Delete button from the Application Details Modal, the `onDelete` callback sends the selected application back to the `KanbanBoard` component.
+
+The `handleDelete()` function then:
+- Closes the Application Details Modal.
+- Stores the selected application in `deletingApplication`.
+- This opens the Delete Application confirmation modal.
+
+The user must then confirm the deletion before the application is removed.
+
+---
+
+### Question 10
+
+**How do we reuse the DeleteApplicationModal?**
+
+### Answer
+
+Instead of creating a separate delete modal for the Kanban page, we reuse the existing `DeleteApplicationModal` component that was already created for the Applications page.
+
+The Kanban page passes:
+- `application` → the application being deleted.
+- `onClose` → closes the confirmation modal.
+- `onConfirm` → runs the delete function.
+This avoids duplicate components and keeps the delete UI consistent across the application.
+
+
+
