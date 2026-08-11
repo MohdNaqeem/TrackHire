@@ -6,6 +6,7 @@ import KanbanColumn from "./KanbanColumn";
 import ApplicationDetailsModal from "./ApplicationDetailsModal";
 
 import AddApplicationModal from "../Applications/AddApplicationModal";
+import DeleteApplicationModal from "../Applications/DeleteApplicationModal";
 
 const KanbanBoard = () => {
   // Applications State
@@ -19,7 +20,11 @@ const KanbanBoard = () => {
   const [editingApplication, setEditingApplication] =
     useState(null);
 
-  // Modal State
+  // Delete State
+  const [deletingApplication, setDeletingApplication] =
+    useState(null);
+
+  // Edit Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Form State
@@ -34,7 +39,7 @@ const KanbanBoard = () => {
   // Form Validation State
   const [formErrors, setFormErrors] = useState({});
 
-  // Handle Drag & Drop
+  // Drag & Drop
   const handleDrop = (applicationId, newStatus) => {
     setApplications((currentApplications) =>
       currentApplications.map((application) =>
@@ -48,17 +53,15 @@ const KanbanBoard = () => {
     );
   };
 
-  // Handle Card Click
+  // Card Click
   const handleApplicationClick = (application) => {
     setSelectedApplication(application);
   };
 
-  // Handle Edit
+  // Edit Application
   const handleEdit = (application) => {
-    // Store application being edited
     setEditingApplication(application);
 
-    // Fill form with existing application data
     setFormData({
       company: application.company,
       position: application.position,
@@ -67,17 +70,14 @@ const KanbanBoard = () => {
       location: application.location,
     });
 
-    // Clear previous validation errors
     setFormErrors({});
 
-    // Close details modal
     setSelectedApplication(null);
 
-    // Open edit modal
     setIsModalOpen(true);
   };
 
-  // Handle Input Change
+  // Input Change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -87,7 +87,7 @@ const KanbanBoard = () => {
     }));
   };
 
-  // Validate Form
+  // Form Validation
   const validateForm = () => {
     const errors = {};
 
@@ -112,13 +112,12 @@ const KanbanBoard = () => {
     return Object.keys(errors).length === 0;
   };
 
-  // Handle Submit
+  // Submit Edit
   const handleSubmit = () => {
     if (!validateForm()) {
       return;
     }
 
-    // Update Existing Application
     if (editingApplication) {
       setApplications((currentApplications) =>
         currentApplications.map((application) =>
@@ -141,14 +140,31 @@ const KanbanBoard = () => {
       location: "",
     });
 
-    // Clear Errors
     setFormErrors({});
-
-    // Exit Edit Mode
     setEditingApplication(null);
-
-    // Close Modal
     setIsModalOpen(false);
+  };
+
+  // Open Delete Confirmation
+  const handleDelete = (application) => {
+    setSelectedApplication(null);
+    setDeletingApplication(application);
+  };
+
+  // Confirm Delete
+  const confirmDelete = () => {
+    if (!deletingApplication) {
+      return;
+    }
+
+    setApplications((currentApplications) =>
+      currentApplications.filter(
+        (application) =>
+          application.id !== deletingApplication.id,
+      ),
+    );
+
+    setDeletingApplication(null);
   };
 
   // Applications by Status
@@ -201,16 +217,17 @@ const KanbanBoard = () => {
         />
       </div>
 
-      {/* Application Details Modal */}
+      {/* Application Details */}
       {selectedApplication && (
         <ApplicationDetailsModal
           application={selectedApplication}
           onClose={() => setSelectedApplication(null)}
           onEdit={handleEdit}
+          onDelete={handleDelete}
         />
       )}
 
-      {/* Edit Application Modal */}
+      {/* Edit Application */}
       {isModalOpen && (
         <AddApplicationModal
           onClose={() => {
@@ -222,6 +239,15 @@ const KanbanBoard = () => {
           handleSubmit={handleSubmit}
           editingApplication={editingApplication}
           formErrors={formErrors}
+        />
+      )}
+
+      {/* Delete Confirmation */}
+      {deletingApplication && (
+        <DeleteApplicationModal
+          application={deletingApplication}
+          onClose={() => setDeletingApplication(null)}
+          onConfirm={confirmDelete}
         />
       )}
     </>
