@@ -532,7 +532,7 @@ The Applications page owns the applications state. Each ApplicationRow receives 
 Search, filter, and sort are controlled by handlers in ApplicationsToolbar. Each handler first updates the relevant state and then resets currentPage to 1. This prevents the user from staying on an invalid page when the filtered result set becomes smaller.
 
 ------------------------------------------------------------------------------------------------------------------------
-## Feature 7 : Kanban page
+## Feature 7 : Kanban page / drag and drop / Application modal on click
 
 ### Question 1
 
@@ -588,7 +588,7 @@ KanbanCard → represents and makes an application draggable.
 
 ---
 
-### Question 
+### Question 4
 
 **Why does the Kanban board automatically update after moving a card?**
 
@@ -600,3 +600,64 @@ Since the Kanban columns are created using filter() based on the application's s
 
 React detects the state change and re-renders the components.
 
+---
+
+### Question 5
+
+**Why do we use selectedApplication state in KanbanBoard?**
+
+### Answer 
+
+We use selectedApplication to keep track of which Kanban card the user has clicked. Initially, its value is null, meaning no application is selected. When a card is clicked, the selected application's complete object is stored in this state This allows the KanbanBoard to control which application's details should be displayed in the modal.
+
+---
+
+### Question 6
+
+**How does the selected application travel from KanbanCard to the modal?**
+
+### Answer 
+
+The application is passed through the component hierarchy using props.
+
+The flow is:
+
+KanbanBoard
+    ↓
+KanbanColumn
+    ↓
+KanbanCard
+
+When the card is clicked, KanbanCard calls the click handler received from its parent and passes the application object. The function eventually reaches KanbanBoard, where selectedApplication is updated. Then KanbanBoard passes that selected application to ApplicationDetailsModal.
+
+---
+
+### Question 7
+
+**How does conditional rendering control the modal?**
+
+### Answer 
+
+The modal is rendered only when selectedApplication has a value. The logic is:
+
+selectedApplication = null
+        ↓
+Modal is hidden
+
+selectedApplication = application object
+        ↓
+Modal is displayed
+
+We use conditional rendering with selectedApplication &&. This means React renders the modal only when an application has been selected.
+
+---
+
+### Question 8
+
+**How does closing the modal work?**
+
+### Answer 
+
+The modal receives an onClose function from KanbanBoard. When the user clicks the close button, this function sets:
+selectedApplication = null
+Since there is no longer a selected application, the conditional rendering becomes false and the modal disappears.
