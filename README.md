@@ -104,7 +104,7 @@ npm run dev
 | Project setup & routing | ✅ Done |
 | Static pages & navbar | ✅ Done |
 | Hero section | ✅ Done |
-| Kanban board UI | 📅 Planned |
+| Kanban board UI | ✅ Done |
 | Job CRUD (frontend, mock data) | 📅 Planned |
 | Backend API | 📅 Planned |
 | Auth | 📅 Planned |
