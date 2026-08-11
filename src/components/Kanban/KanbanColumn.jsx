@@ -2,7 +2,7 @@ import KanbanCard from "./KanbanCard";
 
 const KanbanColumn = ({ title, applications }) => {
   return (
-    <div className="flex min-h-[500px] min-w-[280px] flex-1 flex-col rounded-3xl bg-[#F8F9FC] p-4">
+    <div className="min-w-0 rounded-3xl bg-[#F8F9FC] p-4">
       {/* Column Header */}
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-semibold text-[#211A52]">
