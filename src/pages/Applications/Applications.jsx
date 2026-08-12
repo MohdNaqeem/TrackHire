@@ -225,7 +225,7 @@ const Applications = () => {
   const currentApplications = filteredApplications.slice(startIndex, endIndex);
 
   return (
-    <section className="p-6">
+    <section className="min-w-0 p-4 sm:p-6">
       <ApplicationsHeader onAddApplication={() => setIsModalOpen(true)} />
 
       <ApplicationsToolbar

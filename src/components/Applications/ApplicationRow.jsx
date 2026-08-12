@@ -24,25 +24,32 @@ const ApplicationRow = ({
   return (
     <tr className="border-b border-[#ECECF3] transition hover:bg-[#FAFBFD]">
       {/* Company */}
-      <td className="px-6 py-5">
+      <td className="whitespace-nowrap px-6 py-5">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5F6FA]">
-            <RiBuildingLine size={20} className="text-[#3CBFA4]" />
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F5F6FA]">
+            <RiBuildingLine
+              size={20}
+              className="text-[#3CBFA4]"
+            />
           </div>
 
-          <div>
-            <h3 className="font-semibold text-[#211A52]">{company}</h3>
+          <div className="min-w-[180px]">
+            <h3 className="font-semibold text-[#211A52]">
+              {company}
+            </h3>
 
-            <p className="text-sm text-[#8A86A3]">{position}</p>
+            <p className="text-sm text-[#8A86A3]">
+              {position}
+            </p>
           </div>
         </div>
       </td>
 
       {/* Status */}
-      <td className="px-6 py-5">
+      <td className="whitespace-nowrap px-6 py-5">
         <span
           className={`rounded-full px-3 py-1 text-xs font-semibold ${
-            statusStyles[status]
+            statusStyles[status] || "bg-gray-100 text-gray-700"
           }`}
         >
           {status}
@@ -50,25 +57,34 @@ const ApplicationRow = ({
       </td>
 
       {/* Applied Date */}
-      <td className="px-6 py-5 text-sm text-[#5F5B80]">{appliedDate}</td>
+      <td className="whitespace-nowrap px-6 py-5 text-sm text-[#5F5B80]">
+        {appliedDate}
+      </td>
 
       {/* Location */}
-      <td className="px-6 py-5 text-sm text-[#5F5B80]">{location}</td>
+      <td className="whitespace-nowrap px-6 py-5 text-sm text-[#5F5B80]">
+        {location}
+      </td>
 
       {/* Action */}
-      <td className="px-6 py-5 text-right">
+      <td className="whitespace-nowrap px-6 py-5 text-right">
         <div className="flex justify-end gap-2">
           {/* Edit */}
           <button
+            type="button"
             onClick={() => onEdit(application)}
             title="Edit application"
             className="rounded-lg p-2 transition hover:bg-[#F5F6FA]"
           >
-            <RiArrowRightLine size={20} className="text-[#211A52]" />
+            <RiArrowRightLine
+              size={20}
+              className="text-[#211A52]"
+            />
           </button>
 
           {/* Delete */}
           <button
+            type="button"
             onClick={() => onDelete(application)}
             title="Delete application"
             className="rounded-lg p-2 transition hover:bg-[#FEF2F2]"

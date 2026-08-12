@@ -1,30 +1,35 @@
 import ApplicationRow from "./ApplicationRow";
 
-const ApplicationsTable = ({ applications, onEdit, onDelete, }) => {
+const ApplicationsTable = ({
+  applications,
+  onEdit,
+  onDelete,
+}) => {
   return (
     <section className="overflow-hidden rounded-3xl border border-[#E7E7EF] bg-white shadow-sm">
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
+      {/* Horizontal Scroll Container */}
+      <div className="w-full overflow-x-auto">
+        <table className="min-w-[800px] w-full border-collapse">
           {/* Table Header */}
           <thead className="bg-[#F8F9FC]">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
+              <th className="w-[34%] px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
                 Company
               </th>
 
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
+              <th className="w-[15%] px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
                 Status
               </th>
 
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
+              <th className="w-[18%] px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
                 Applied
               </th>
 
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
+              <th className="w-[18%] px-6 py-4 text-left text-sm font-semibold text-[#5F5B80]">
                 Location
               </th>
 
-              <th className="px-6 py-4 text-right text-sm font-semibold text-[#5F5B80]">
+              <th className="w-[15%] px-6 py-4 text-right text-sm font-semibold text-[#5F5B80]">
                 Action
               </th>
             </tr>
@@ -48,7 +53,10 @@ const ApplicationsTable = ({ applications, onEdit, onDelete, }) => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="py-10 text-center text-[#8A86A3]">
+                <td
+                  colSpan="5"
+                  className="py-10 text-center text-[#8A86A3]"
+                >
                   No applications found.
                 </td>
               </tr>

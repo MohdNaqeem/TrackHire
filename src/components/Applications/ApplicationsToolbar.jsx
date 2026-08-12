@@ -25,19 +25,48 @@ const ApplicationsToolbar = ({
     setSortBy(value);
     setCurrentPage(1);
   };
+
   return (
-    <section className="mb-8 flex flex-col gap-4 rounded-2xl border border-[#E7E7EF] bg-white p-5 shadow-sm lg:flex-row lg:items-center lg:justify-between">
+    <section
+      className="
+        mb-8
+        flex
+        flex-col
+        gap-4
+        rounded-2xl
+        border
+        border-[#E7E7EF]
+        bg-white
+        p-5
+        shadow-sm
+        lg:flex-row
+        lg:items-center
+        lg:justify-between
+      "
+    >
       {/* Search */}
-      <SearchBar searchTerm={searchTerm} setSearchTerm={handleSearchChange} />
+      <div className="w-full lg:max-w-[450px]">
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={handleSearchChange}
+        />
+      </div>
 
       {/* Filters */}
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <StatusFilter
-          selectedStatus={selectedStatus}
-          setSelectedStatus={handleStatusChange}
-        />
+      <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto">
+        <div className="w-full sm:flex-1 lg:w-auto">
+          <StatusFilter
+            selectedStatus={selectedStatus}
+            setSelectedStatus={handleStatusChange}
+          />
+        </div>
 
-        <SortDropdown sortBy={sortBy} setSortBy={handleSortChange} />
+        <div className="w-full sm:flex-1 lg:w-auto">
+          <SortDropdown
+            sortBy={sortBy}
+            setSortBy={handleSortChange}
+          />
+        </div>
       </div>
     </section>
   );
