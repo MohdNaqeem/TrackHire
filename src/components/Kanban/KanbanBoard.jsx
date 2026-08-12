@@ -10,7 +10,8 @@ import DeleteApplicationModal from "../Applications/DeleteApplicationModal";
 
 const KanbanBoard = () => {
   // Applications State
-  const [applications, setApplications] = useState(applicationsData);
+  const [applications, setApplications] =
+    useState(applicationsData);
 
   // Selected Application
   const [selectedApplication, setSelectedApplication] =
@@ -39,6 +40,11 @@ const KanbanBoard = () => {
   // Form Validation State
   const [formErrors, setFormErrors] = useState({});
 
+  // Mobile Open Column
+  // Applied is open by default on mobile
+  const [openColumn, setOpenColumn] =
+    useState(null);
+
   // Drag & Drop
   const handleDrop = (applicationId, newStatus) => {
     setApplications((currentApplications) =>
@@ -50,6 +56,13 @@ const KanbanBoard = () => {
             }
           : application,
       ),
+    );
+  };
+
+  // Mobile Column Toggle
+  const handleToggleColumn = (status) => {
+    setOpenColumn((currentColumn) =>
+      currentColumn === status ? null : status,
     );
   };
 
@@ -169,30 +182,38 @@ const KanbanBoard = () => {
 
   // Applications by Status
   const appliedApplications = applications.filter(
-    (application) => application.status === "Applied",
+    (application) =>
+      application.status === "Applied",
   );
 
   const interviewApplications = applications.filter(
-    (application) => application.status === "Interview",
+    (application) =>
+      application.status === "Interview",
   );
 
   const offerApplications = applications.filter(
-    (application) => application.status === "Offer",
+    (application) =>
+      application.status === "Offer",
   );
 
   const rejectedApplications = applications.filter(
-    (application) => application.status === "Rejected",
+    (application) =>
+      application.status === "Rejected",
   );
 
   return (
     <>
       {/* Kanban Board */}
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 xl:gap-5">
         <KanbanColumn
           title="Applied"
           applications={appliedApplications}
           onDrop={handleDrop}
           onApplicationClick={handleApplicationClick}
+          isOpen={openColumn === "Applied"}
+          onToggle={() =>
+            handleToggleColumn("Applied")
+          }
         />
 
         <KanbanColumn
@@ -200,6 +221,10 @@ const KanbanBoard = () => {
           applications={interviewApplications}
           onDrop={handleDrop}
           onApplicationClick={handleApplicationClick}
+          isOpen={openColumn === "Interview"}
+          onToggle={() =>
+            handleToggleColumn("Interview")
+          }
         />
 
         <KanbanColumn
@@ -207,6 +232,10 @@ const KanbanBoard = () => {
           applications={offerApplications}
           onDrop={handleDrop}
           onApplicationClick={handleApplicationClick}
+          isOpen={openColumn === "Offer"}
+          onToggle={() =>
+            handleToggleColumn("Offer")
+          }
         />
 
         <KanbanColumn
@@ -214,6 +243,10 @@ const KanbanBoard = () => {
           applications={rejectedApplications}
           onDrop={handleDrop}
           onApplicationClick={handleApplicationClick}
+          isOpen={openColumn === "Rejected"}
+          onToggle={() =>
+            handleToggleColumn("Rejected")
+          }
         />
       </div>
 
@@ -221,7 +254,9 @@ const KanbanBoard = () => {
       {selectedApplication && (
         <ApplicationDetailsModal
           application={selectedApplication}
-          onClose={() => setSelectedApplication(null)}
+          onClose={() =>
+            setSelectedApplication(null)
+          }
           onEdit={handleEdit}
           onDelete={handleDelete}
         />
@@ -246,7 +281,9 @@ const KanbanBoard = () => {
       {deletingApplication && (
         <DeleteApplicationModal
           application={deletingApplication}
-          onClose={() => setDeletingApplication(null)}
+          onClose={() =>
+            setDeletingApplication(null)
+          }
           onConfirm={confirmDelete}
         />
       )}
