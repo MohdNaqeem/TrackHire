@@ -47,22 +47,22 @@ const Calendar = () => {
   };
 
   return (
-    <section className="p-6">
+    <section className="p-4 sm:p-6">
       {/* Page Header */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-[#211A52]">
+      <div className="mb-6 text-center sm:mb-8">
+        <h1 className="text-2xl font-bold text-[#211A52] sm:text-3xl">
           Calendar
         </h1>
 
-        <p className="mt-2 text-sm text-[#8A86A3]">
+        <p className="mx-auto mt-2 max-w-xl text-xs leading-5 text-[#8A86A3] sm:text-sm sm:leading-6">
           Keep track of your interviews and important job search events.
         </p>
       </div>
 
       {/* Calendar Content */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_330px]">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_330px] xl:gap-6">
         {/* Calendar */}
-        <section className="rounded-2xl border border-[#E7E7EF] bg-white p-6 shadow-sm">
+        <section className="min-w-0 rounded-2xl border border-[#E7E7EF] bg-white p-3 shadow-sm sm:p-5 lg:p-6">
           <CalendarHeader
             currentDate={currentDate}
             onPreviousMonth={handlePreviousMonth}
