@@ -16,6 +16,7 @@ import Kanban from "../pages/Kanban/Kanban";
 import Calendar from "../pages/Calendar/Calendar";
 import Profile from "../pages/Profile/Profile";
 import Settings from "../pages/Settings/Settings";
+import Analytics from "../pages/Analytics/Analytics";
 
 function AppRoutes() {
   return (
@@ -40,6 +41,7 @@ function AppRoutes() {
         <Route path="calendar" element={<Calendar />} />
         <Route path="profile" element={<Profile />} />
         <Route path="settings" element={<Settings />} />
+        <Route path="analytics" element={<Analytics />} />
       </Route>
 
       {/* 404 */}
