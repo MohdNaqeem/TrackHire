@@ -9,9 +9,9 @@ const AnalyticsStatCard = ({
   const isNegative = variant === "negative";
 
   return (
-    <div className="rounded-2xl border border-[#E7E7EF] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-      <div className="flex items-start justify-between">
-        <div>
+    <div className="min-w-0 rounded-2xl border border-[#E7E7EF] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
           <p className="text-sm font-medium text-[#8A86A3]">
             {title}
           </p>
@@ -21,9 +21,8 @@ const AnalyticsStatCard = ({
           </h2>
         </div>
 
-        {/* Negative metric indicator */}
         {isNegative && (
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#FFF1F1]">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FFF1F1]">
             <RiErrorWarningLine
               size={18}
               className="text-[#E57373]"
@@ -32,7 +31,7 @@ const AnalyticsStatCard = ({
         )}
       </div>
 
-      <p className="mt-3 text-xs text-[#8A86A3]">
+      <p className="mt-3 break-words text-xs text-[#8A86A3]">
         {description}
       </p>
     </div>

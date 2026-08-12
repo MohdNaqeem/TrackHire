@@ -5,7 +5,7 @@ const ApplicationActivityChart = ({ activity }) => {
   );
 
   return (
-    <section className="rounded-3xl border border-[#E7E7EF] bg-white p-6 shadow-sm">
+    <section className="min-w-0 rounded-3xl border border-[#E7E7EF] bg-white p-5 shadow-sm sm:p-6">
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-xl font-bold text-[#211A52]">
@@ -18,7 +18,7 @@ const ApplicationActivityChart = ({ activity }) => {
       </div>
 
       {/* Chart */}
-      <div className="flex h-64 items-end gap-4 sm:gap-8">
+      <div className="flex h-64 min-w-0 items-end gap-3 sm:gap-8">
         {activity.map((item) => {
           const height =
             (item.applications / maxApplications) * 100;
@@ -26,10 +26,10 @@ const ApplicationActivityChart = ({ activity }) => {
           return (
             <div
               key={item.week}
-              className="flex h-full flex-1 flex-col items-center justify-end"
+              className="flex h-full min-w-0 flex-1 flex-col items-center justify-end"
             >
               {/* Number */}
-              <span className="mb-2 text-xs font-semibold text-[#5F5B80]">
+              <span className="mb-2 whitespace-nowrap text-xs font-semibold text-[#5F5B80]">
                 {item.applications}
               </span>
 
@@ -44,7 +44,7 @@ const ApplicationActivityChart = ({ activity }) => {
               </div>
 
               {/* Week */}
-              <span className="mt-3 text-xs font-medium text-[#8A86A3]">
+              <span className="mt-3 text-center text-xs font-medium text-[#8A86A3]">
                 {item.week}
               </span>
             </div>

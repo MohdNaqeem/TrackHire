@@ -37,7 +37,7 @@ const ApplicationStatusChart = ({ applications }) => {
   };
 
   return (
-    <section className="rounded-3xl border border-[#E7E7EF] bg-white p-6 shadow-sm">
+    <section className="min-w-0 rounded-3xl border border-[#E7E7EF] bg-white p-5 shadow-sm sm:p-6">
       {/* Header */}
       <div className="mb-5">
         <h2 className="text-xl font-bold text-[#211A52]">
@@ -56,24 +56,24 @@ const ApplicationStatusChart = ({ applications }) => {
           const percentage = getPercentage(count);
 
           return (
-            <div key={status.name}>
-              <div className="mb-2 flex items-center justify-between">
-                <div className="flex items-center gap-2">
+            <div key={status.name} className="min-w-0">
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <div className="flex min-w-0 items-center gap-2">
                   <span
-                    className={`h-2.5 w-2.5 rounded-full ${status.color}`}
+                    className={`h-2.5 w-2.5 shrink-0 rounded-full ${status.color}`}
                   />
 
-                  <span className="text-sm font-semibold text-[#5F5B80]">
+                  <span className="truncate text-sm font-semibold text-[#5F5B80]">
                     {status.name}
                   </span>
                 </div>
 
-                <span className="text-sm font-semibold text-[#211A52]">
+                <span className="shrink-0 whitespace-nowrap text-sm font-semibold text-[#211A52]">
                   {count}
                 </span>
               </div>
 
-              <div className="h-2 overflow-hidden rounded-full bg-[#F0F0F5]">
+              <div className="h-2 w-full overflow-hidden rounded-full bg-[#F0F0F5]">
                 <div
                   className={`h-full rounded-full transition-all duration-500 ${status.color}`}
                   style={{

@@ -20,8 +20,7 @@ const TopCompanies = ({ applications }) => {
   */
   const counts = topCompanies.map(([, count]) => count);
 
-  const hasDifferentCounts =
-    new Set(counts).size > 1;
+  const hasDifferentCounts = new Set(counts).size > 1;
 
   const title = hasDifferentCounts
     ? "Top Companies"
@@ -49,29 +48,27 @@ const TopCompanies = ({ applications }) => {
         <div className="space-y-3">
           {topCompanies.map(([company, count], index) => (
             <div
-              key={company}
-              className="flex items-center justify-between rounded-2xl bg-[#FAFAFC] p-4"
-            >
-              <div className="flex items-center gap-3">
-                {/* Ranking only when there is an actual difference */}
-                {hasDifferentCounts && (
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#ECFBF8] text-sm font-bold text-[#3CBFA4]">
-                    {index + 1}
-                  </div>
-                )}
+  key={company}
+  className="flex items-center gap-3 rounded-2xl bg-[#FAFAFC] p-3 sm:p-4"
+>
+  {/* Company */}
+  <div className="flex min-w-0 flex-1 items-center gap-3">
+    {hasDifferentCounts && (
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#ECFBF8] text-sm font-bold text-[#3CBFA4]">
+        {index + 1}
+      </div>
+    )}
 
-                <span className="font-semibold text-[#211A52]">
-                  {company}
-                </span>
-              </div>
+    <span className="shrink-0 whitespace-nowrap font-semibold text-[#211A52]">
+      {company}
+    </span>
+  </div>
 
-              <span className="text-sm font-semibold text-[#8A86A3]">
-                {count}{" "}
-                {count === 1
-                  ? "application"
-                  : "applications"}
-              </span>
-            </div>
+  {/* Application Count */}
+  <span className="min-w-0 flex-1 truncate text-right text-xs font-semibold text-[#8A86A3] sm:text-sm">
+    {count} {count === 1 ? "application" : "applications"}
+  </span>
+</div>
           ))}
         </div>
       ) : (
