@@ -1,66 +1,85 @@
-    const TopCompanies = ({ applications }) => {
-  const companyCounts = applications.reduce(
-    (result, application) => {
-      const company = application.company;
+import AnalyticsStatCard from "../../components/Analytics/AnalyticsStatCard";
+import ApplicationStatusChart from "../../components/Analytics/ApplicationStatusChart";
+import ApplicationActivityChart from "../../components/Analytics/ApplicationActivityChart";
+import TopCompanies from "../../components/Analytics/TopCompanies";
 
-      result[company] = (result[company] || 0) + 1;
+import { applicationsData } from "../../data/applicationsData";
+import { applicationActivity } from "../../data/analyticsData";
 
-      return result;
-    },
-    {},
-  );
+const Analytics = () => {
+  const totalApplications = applicationsData.length;
 
-  const topCompanies = Object.entries(companyCounts)
-    .sort(([, countA], [, countB]) => countB - countA)
-    .slice(0, 5);
+  const interviewCount = applicationsData.filter(
+    (application) => application.status === "Interview",
+  ).length;
+
+  const offerCount = applicationsData.filter(
+    (application) => application.status === "Offer",
+  ).length;
+
+  const rejectedCount = applicationsData.filter(
+    (application) => application.status === "Rejected",
+  ).length;
 
   return (
-    <section className="rounded-3xl border border-[#E7E7EF] bg-white p-6 shadow-sm">
-      {/* Header */}
-      <div className="mb-6">
-        <h2 className="text-xl font-bold text-[#211A52]">
-          Top Companies
-        </h2>
+    <section className="p-6">
+      {/* Page Header */}
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold text-[#211A52]">
+          Analytics
+        </h1>
 
-        <p className="mt-1 text-sm text-[#8A86A3]">
-          Companies you have applied to most frequently.
+        <p className="mt-2 text-sm text-[#8A86A3]">
+          Understand your job search performance at a glance.
         </p>
       </div>
 
-      {/* Companies */}
-      {topCompanies.length > 0 ? (
-        <div className="space-y-4">
-          {topCompanies.map(([company, count], index) => (
-            <div
-              key={company}
-              className="flex items-center justify-between rounded-2xl bg-[#FAFAFC] p-4"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#ECFBF8] text-sm font-bold text-[#3CBFA4]">
-                  {index + 1}
-                </div>
+      {/* Statistics */}
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <AnalyticsStatCard
+          title="Total Applications"
+          value={totalApplications}
+          description="Applications tracked in TrackHire."
+        />
 
-                <span className="font-semibold text-[#211A52]">
-                  {company}
-                </span>
-              </div>
+        <AnalyticsStatCard
+          title="Interviews"
+          value={interviewCount}
+          description="Applications that reached interview stage."
+        />
 
-              <span className="text-sm font-semibold text-[#8A86A3]">
-                {count}{" "}
-                {count === 1 ? "application" : "applications"}
-              </span>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="rounded-2xl border border-dashed border-[#DCDCE7] p-8 text-center">
-          <p className="text-sm text-[#8A86A3]">
-            No application data available.
-          </p>
-        </div>
-      )}
+        <AnalyticsStatCard
+          title="Offers"
+          value={offerCount}
+          description="Applications that resulted in an offer."
+        />
+
+        <AnalyticsStatCard
+          title="Rejections"
+          value={rejectedCount}
+          description="Applications that were rejected."
+        />
+      </div>
+
+      {/* Charts */}
+      <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
+        <ApplicationStatusChart
+          applications={applicationsData}
+        />
+
+        <TopCompanies
+          applications={applicationsData}
+        />
+      </div>
+
+      {/* Activity */}
+      <div className="mt-6">
+        <ApplicationActivityChart
+          activity={applicationActivity}
+        />
+      </div>
     </section>
   );
 };
 
-export default TopCompanies;
+export default Analytics;
