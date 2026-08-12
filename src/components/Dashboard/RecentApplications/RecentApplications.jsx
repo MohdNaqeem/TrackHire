@@ -4,17 +4,22 @@ import { RiArrowRightLine } from "react-icons/ri";
 import ApplicationRow from "./ApplicationRow";
 import { applicationsData } from "../../../data/applicationsData";
 
+
 const RecentApplications = () => {
   const recentApplications = [...applicationsData]
-    .sort((a, b) => new Date(b.appliedDate) - new Date(a.appliedDate))
+    .sort(
+      (a, b) =>
+        new Date(b.appliedDate) - new Date(a.appliedDate),
+    )
     .slice(0, 3);
 
+
   return (
-    <section className="mt-8 rounded-3xl border border-[#E7E7EF] bg-white p-7 shadow-sm">
+    <section className="mt-8 rounded-3xl border border-[#E7E7EF] bg-white p-4 shadow-sm sm:p-6 lg:p-7">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-[#211A52]">
+          <h2 className="text-xl font-bold text-[#211A52] sm:text-2xl">
             Recent Applications
           </h2>
 
@@ -23,41 +28,45 @@ const RecentApplications = () => {
           </p>
         </div>
 
+
         <Link
           to="/dashboard/applications"
-          className="flex items-center gap-2 rounded-xl bg-[#F5F6FA] px-4 py-2 text-sm font-medium text-[#211A52] transition-all duration-300 hover:bg-[#3CBFA4] hover:text-white"
+          className="flex w-fit items-center gap-2 rounded-xl bg-[#F5F6FA] px-4 py-2 text-sm font-medium text-[#211A52] transition-all duration-300 hover:bg-[#3CBFA4] hover:text-white"
         >
           View All Applications
+
           <RiArrowRightLine size={18} />
         </Link>
       </div>
 
-      {/* Table */}
-      <div className="overflow-hidden rounded-2xl border border-[#ECECF3]">
-        <table className="w-full border-collapse">
+
+      {/* Table Scroll Container */}
+      <div className="overflow-x-auto rounded-2xl border border-[#ECECF3]">
+        <table className="min-w-[700px] w-full border-collapse">
           <thead className="bg-[#FAFAFC]">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
+              <th className="whitespace-nowrap px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
                 Company
               </th>
 
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
+              <th className="whitespace-nowrap px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
                 Status
               </th>
 
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
+              <th className="whitespace-nowrap px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
                 Location
               </th>
 
-              <th className="px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
+              <th className="whitespace-nowrap px-6 py-4 text-left text-sm font-semibold text-[#8A86A3]">
                 Applied
               </th>
 
-              <th className="px-6 py-4 text-right text-sm font-semibold text-[#8A86A3]">
+              <th className="whitespace-nowrap px-6 py-4 text-right text-sm font-semibold text-[#8A86A3]">
                 Action
               </th>
             </tr>
           </thead>
+
 
           <tbody>
             {recentApplications.map((application) => (
@@ -76,5 +85,6 @@ const RecentApplications = () => {
     </section>
   );
 };
+
 
 export default RecentApplications;

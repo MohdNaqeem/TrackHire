@@ -1,5 +1,6 @@
 import { RiArrowRightLine, RiBuildingLine } from "react-icons/ri";
 
+
 const ApplicationRow = ({
   company,
   position,
@@ -26,12 +27,13 @@ const ApplicationRow = ({
     }
   };
 
+
   return (
     <tr className="border-b border-[#ECECF3] transition hover:bg-[#FAFAFC]">
       {/* Company */}
-      <td className="px-6 py-6">
+      <td className="whitespace-nowrap px-6 py-5 sm:px-6 sm:py-6">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#F5F6FA]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5F6FA] sm:h-12 sm:w-12">
             <RiBuildingLine
               size={20}
               className="text-[#3CBFA4]"
@@ -50,8 +52,9 @@ const ApplicationRow = ({
         </div>
       </td>
 
+
       {/* Status */}
-      <td className="px-6 py-5">
+      <td className="whitespace-nowrap px-6 py-5">
         <span
           className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusStyles()}`}
         >
@@ -59,19 +62,25 @@ const ApplicationRow = ({
         </span>
       </td>
 
+
       {/* Location */}
-      <td className="px-6 py-5 text-[#5F5B80]">
+      <td className="whitespace-nowrap px-6 py-5 text-sm text-[#5F5B80]">
         {location}
       </td>
 
+
       {/* Date */}
-      <td className="px-6 py-5 text-[#5F5B80]">
+      <td className="whitespace-nowrap px-6 py-5 text-sm text-[#5F5B80]">
         {appliedDate}
       </td>
 
+
       {/* Action */}
-      <td className="px-6 py-5 text-right">
-        <button className="rounded-lg p-2 transition hover:bg-[#F5F6FA]">
+      <td className="whitespace-nowrap px-6 py-5 text-right">
+        <button
+          type="button"
+          className="rounded-lg p-2 transition hover:bg-[#F5F6FA]"
+        >
           <RiArrowRightLine
             size={20}
             className="text-[#211A52]"
@@ -81,5 +90,6 @@ const ApplicationRow = ({
     </tr>
   );
 };
+
 
 export default ApplicationRow;
