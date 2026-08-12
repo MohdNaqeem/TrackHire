@@ -18,20 +18,20 @@ const Profile = () => {
   };
 
   return (
-    <section className="p-6">
+    <section className="p-4 sm:p-6">
       {/* Page Header */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-[#211A52]">
+      <div className="mb-6 text-center sm:mb-8">
+        <h1 className="text-2xl font-bold text-[#211A52] sm:text-3xl">
           Profile
         </h1>
 
-        <p className="mt-2 text-sm text-[#8A86A3]">
+        <p className="mx-auto mt-2 max-w-xl text-sm leading-5 text-[#8A86A3]">
           Manage your personal and professional information.
         </p>
       </div>
 
       {/* Profile Header */}
-      <div className="mb-6">
+      <div className="mb-5 sm:mb-6">
         <ProfileHeader
           profile={profile}
           onEdit={() => setIsEditModalOpen(true)}
