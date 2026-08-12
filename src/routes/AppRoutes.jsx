@@ -14,6 +14,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Applications from "../pages/Applications/Applications";
 import Kanban from "../pages/Kanban/Kanban";
 import Calendar from "../pages/Calendar/Calendar";
+import Profile from "../pages/Profile/Profile";
 
 function AppRoutes() {
   return (
@@ -36,6 +37,7 @@ function AppRoutes() {
         <Route path="applications" element={<Applications />} />
         <Route path="kanban" element={<Kanban />} />
         <Route path="calendar" element={<Calendar />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
 
       {/* 404 */}

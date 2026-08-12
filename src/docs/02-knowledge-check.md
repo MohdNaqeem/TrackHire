@@ -697,7 +697,7 @@ This avoids duplicate components and keeps the delete UI consistent across the a
 
 ------------------------------------------------------------------------------------------------------------------------
 
-## Feature 7 : Calendar page
+## Feature 8 : Calendar page
 
 ### Question 1
 
@@ -806,5 +806,35 @@ When the user clicks Previous or Next:
 - `CalendarGrid` generates the dates for the new month.
 - `CalendarHeader` displays the new month and year.
 
+------------------------------------------------------------------------------------------------------------------------
+
+## Feature 9 : Profile page
+
+### Question 1
+
+**What is the responsibility of Profile.jsx?**
+
+### Answer
+
+Profile.jsx is the main parent component of the Profile page. It manages the profile data using React state and controls whether the ProfileEditModal should be displayed. It also renders the main Profile components and passes the required profile data and functions to them.
+
+The basic flow is:
+Profile.jsx → manages state → displays profile information → opens edit modal → receives updated data.
+
+---
+
+### Question 2
+
+**How does the Edit Profile functionality work?**
+
+### Answer 
+
+When the user clicks the Edit Profile button, Profile.jsx sets the selected profile data and opens the ProfileEditModal.
+Inside ProfileEditModal, the profile data is copied into local state using useState.When the user changes an input field, handleChange updates the corresponding property in formData. When the user clicks Save Changes, handleSubmit prevents the default form submission and calls the onSave function with the updated formData.
+
+The basic flow is:
+Edit Profile → ProfileEditModal → useState → user changes fields → handleChange → formData updated → Save Changes → onSave(formData).
+
+---------------------------------------------------------------------------------------------------------------------------
 
 
