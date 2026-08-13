@@ -5,20 +5,20 @@ import AccountSettings from "../../components/Settings/AccountSettings";
 
 const Settings = () => {
   return (
-    <section className="p-6">
+    <section className="min-w-0 p-4 sm:p-6">
       {/* Page Header */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-[#211A52]">
+      <div className="mb-6 text-center sm:mb-8">
+        <h1 className="text-2xl font-bold text-[#211A52] sm:text-3xl">
           Settings
         </h1>
 
-        <p className="mt-2 text-sm text-[#8A86A3]">
+        <p className="mx-auto mt-2 max-w-md text-sm leading-5 text-[#8A86A3]">
           Manage your TrackHire preferences.
         </p>
       </div>
 
       {/* Settings Content */}
-      <div className="mx-auto max-w-4xl space-y-6">
+      <div className="mx-auto w-full max-w-4xl space-y-4 sm:space-y-6">
         {/* Notifications */}
         <SettingsSection
           title="Notifications"

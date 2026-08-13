@@ -16,9 +16,9 @@ const ApplicationPreferences = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+    <div className="grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2">
       {/* Job Type */}
-      <div>
+      <div className="min-w-0">
         <label className="mb-2 block text-sm font-semibold text-[#211A52]">
           Default Job Type
         </label>
@@ -37,7 +37,7 @@ const ApplicationPreferences = () => {
       </div>
 
       {/* Work Mode */}
-      <div>
+      <div className="min-w-0">
         <label className="mb-2 block text-sm font-semibold text-[#211A52]">
           Preferred Work Mode
         </label>

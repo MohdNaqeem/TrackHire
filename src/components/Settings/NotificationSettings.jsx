@@ -19,19 +19,19 @@ const NotificationSettings = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 sm:space-y-4">
       {notifications.map((setting) => (
         <div
           key={setting.id}
-          className="flex items-center justify-between gap-4 rounded-2xl bg-[#FAFAFC] p-4"
+          className="flex min-w-0 items-start gap-3 rounded-2xl bg-[#FAFAFC] p-4 sm:items-center sm:gap-4"
         >
           {/* Setting Information */}
-          <div>
-            <h3 className="font-semibold text-[#211A52]">
+          <div className="min-w-0 flex-1">
+            <h3 className="break-words font-semibold leading-5 text-[#211A52]">
               {setting.title}
             </h3>
 
-            <p className="mt-1 text-sm text-[#8A86A3]">
+            <p className="mt-1 break-words text-sm leading-5 text-[#8A86A3]">
               {setting.description}
             </p>
           </div>
